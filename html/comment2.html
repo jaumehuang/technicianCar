@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0,user-scalable=no">
+	<meta content="yes" name="apple-mobile-web-app-capable" />
+	<meta content="black" name="apple-mobile-web-app-status-bar-style" />
+	<meta content="telephone=no" name="format-detection" />
+	<script type="text/javascript" src="../script/lib/flexible.js"></script>
+	<link rel="stylesheet" href="../css/iconfont.css" />
+	<link rel="stylesheet" href="../css/basic.css" />
+	<link rel="stylesheet" href="../css/style.css" />
+	<script type="text/javascript" src="../script/lib/vue.min.js"></script>
+	<title>评价</title>
+	<style>
+		.area {
+			position: relative;
+		}
+
+		.num {
+			position: absolute;
+			right: 0.75rem;
+			bottom: 0.375rem;
+		}
+	</style>
+</head>
+
+<body class="ask comment_list">
+	<header class="bottom-line">
+		<i class="icon-font icon-zuo t-size-16 fl " onclick="api.closeWin()"></i>
+		<span class="t-center t-size-16">评价</span>
+	</header>
+	<div class="container" id="comment2">
+		<div class="clearfix technician-info">
+			<img v-bind:src="person.Photo" class="photo fl" />
+			<div class="fl content t-size-14">
+				<div class="">
+					<span class="t-size-16">{{person.RealName}}</span>
+					<img src="../image/king.png" class="king-img" />
+					<span>{{person.Name}}</span>
+					<img src="../image/up.png" class="king-img" />
+				</div>
+				<div class="c-black">擅长:{{person.GoodBrandName}}</div>
+			</div>
+		</div>
+		<ul class="star-list">
+			<li class="star-li clearfix ">
+				<div class="fl title-li t-size-14">
+					故障排除率
+				</div>
+				<div class="fl" id="readOnly1" ref="readOnly1">
+					<img class="star" src="../image/star-off.png" @click="changeStar($event,0)" data-index="0"/>
+					<img class="star" src="../image/star-off.png" @click="changeStar($event,1)" data-index="1"/>
+					<img  class="star" src="../image/star-off.png" @click="changeStar($event,2)" data-index="2"/>
+					<img class="star" src="../image/star-off.png" @click="changeStar($event,3)" data-index="3"/>
+					<img  class="star" src="../image/star-off.png" @click="changeStar($event,4)" data-index="4"/>
+				</div>
+			</li>
+			<li class="star-li clearfix ">
+				<div class="fl title-li t-size-14">
+					服务态度
+				</div>
+				<div class="fl" id="readOnly2" ref="readOnly2">
+					<img class="star" src="../image/star-off.png" @click="changeStar($event,0)" data-index="0"/>
+					<img class="star" src="../image/star-off.png" @click="changeStar($event,1)" data-index="1"/>
+					<img  class="star" src="../image/star-off.png" @click="changeStar($event,2)" data-index="2"/>
+					<img class="star" src="../image/star-off.png" @click="changeStar($event,3)" data-index="3"/>
+					<img  class="star" src="../image/star-off.png" @click="changeStar($event,4)" data-index="4"/>
+				</div>
+			</li>
+			<li class="star-li clearfix ">
+				<div class="fl title-li t-size-14">
+					服务时效
+				</div>
+				<div class="fl" id="readOnly3" ref="readOnly3">
+					<img class="star" src="../image/star-off.png" @click="changeStar($event,0)" data-index="0"/>
+					<img class="star" src="../image/star-off.png" @click="changeStar($event,1)" data-index="1"/>
+					<img  class="star" src="../image/star-off.png" @click="changeStar($event,2)" data-index="2"/>
+					<img class="star" src="../image/star-off.png" @click="changeStar($event,3)" data-index="3"/>
+					<img  class="star" src="../image/star-off.png" @click="changeStar($event,4)" data-index="4"/>
+				</div>
+			</li>
+		</ul>
+		<div class="area">
+			<textarea style="margin-top:0.3125rem;" class=" t-size-14" cols="" rows="6" placeholder="有什么对技师说的吗" ref="texTarea" v-model="areaText"></textarea>
+			<span class="num t-size-12 c-gray" v-mode="num" ref="num">字数0</span>
+		</div>
+		<div class="show-img clearfix">
+			<div class="img-list fl">
+				<div class="show-bf fl" v-for="(item,index) in imgarr">
+					<img v-bind:src="item" class="show-li " />
+					<i class="icon-font icon-guanbi c-black" @click="deleteImg(index)"></i>
+				</div>
+				<div class="img-item t-center fl " @click="OpenImg()">
+					<img src="../image/picture.png" />
+					<div class="t-size-12 c-gray">添加图片</div>
+				</div>
+
+			</div>
+		</div>
+		<footer>
+			<button class="btn-very-large c-white btn-bg-o t-size-16" @click="BtnData">提交评价</button>
+		</footer>
+	</div>
+
+	<script type="text/javascript" src="../script/lib/api.js"></script>
+	<script type="text/javascript" src="../script/js/commom.js"></script>
+	<script type="text/javascript" src="../script/js/comment2.js"></script>
+	<script>
+	</script>
+</body>
+
+</html>

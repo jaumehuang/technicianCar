@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0,user-scalable=no">
+		<meta content="yes" name="apple-mobile-web-app-capable" />
+		<meta content="black" name="apple-mobile-web-app-status-bar-style" />
+		<meta content="telephone=no" name="format-detection" />
+		<script type="text/javascript" src="../script/lib/flexible.js"></script>
+		<link rel="stylesheet" href="../css/iconfont.css" />
+		<link rel="stylesheet" href="../css/basic.css" />
+		<link rel="stylesheet" href="../css/style.css" />
+		<script type="text/javascript" src="../script/lib/vue.min.js"></script>
+		<title>我的</title>
+		<style>
+		[v-cloak] {
+			display: none !important;
+		 }
+		</style>
+	</head>
+	<body class="person">
+		<header class="bottom-line">
+
+			<span class="t-center t-size-16">我的</span>
+
+		</header>
+		<div class="container" id="person" v-cloak >
+			<div class="person-info clearfix c-black t-size-14 bottom-line"  v-if="isLogin"  v-on:click="openView('person_info')"  >
+				<img v-bind:src="person.Photo" id="photo"/>
+				<span v-text="person.RealName" id="name"></span>
+				<i class="icon-font icon-gengduo fr t-size-16"></i>
+			</div>
+			 <div class="person-info clearfix c-black t-size-14 bottom-line" v-else  v-on:click="openView('login')">
+			 	 <img src="../image/gril.jpeg" />
+			 	 <span >登录/注册</span>
+			 	 <i class="icon-font icon-gengduo fr t-size-16"></i>
+			 </div>
+
+			 <nav class="nav-list clearfix">
+			 	 <a href="#" class="t-size-16 nav-li t-center fl"  v-on:click="IsLogin(isLogin ? 'wallet':'login')">
+			 	 	 <div class="t-size-18 c-black" ref="AdvancePayment">0.0</div>
+			 	 	 <div class="c-black">余额</div>
+			 	 </a>
+			 	  <a href="#" class="t-size-16 nav-li t-center fl"  v-on:click="IsLogin(isLogin ? 'my_collction':'login')">
+			 	 	 <div class="t-size-18 c-black" ref="Colnum">0</div>
+			 	 	 <div class="c-black">收藏</div>
+			 	 </a>
+			 	  <a href="#" class="t-size-16 nav-li t-center fl" v-on:click="IsLogin(isLogin ? 'my_follow':'login')">
+			 	 	 <div class="t-size-18 c-black" ref="follow">0</div>
+			 	 	 <div class="c-black">关注</div>
+			 	 </a>
+			 </nav>
+			  <div class="input-in clearfix bottom-line t-size-14 c-black" v-on:click="rootView( isLogin ? 2:'login',1)">
+			 	 <div class="fl">
+			 	 	<img src="../image/p0.png"/>
+			 	 	<span>咨询订单</span>
+			 	 </div>
+			 	 <i class="icon-font icon-gengduo fr t-size-16"></i>
+			 </div>
+			 <div class="input-in clearfix bottom-line t-size-14 c-black" v-on:click="rootView( isLogin ? 2:'login',0)">
+			 	 <div class="fl">
+			 	 	<img src="../image/p1.png"/>
+			 	 	<span>维修订单</span>
+			 	 </div>
+			 	 <i class="icon-font icon-gengduo fr t-size-16"></i>
+			 </div>
+
+			 <div class="input-in clearfix bottom-line t-size-14 c-black" v-on:click="IsLogin( isLogin ? 'information':'login')">
+			 	 <div class="fl">
+			 	 	<img src="../image/p2.png"/>
+			 	 	<span>我的消息</span>
+			 	 </div>
+			 	 <i class="icon-font icon-gengduo fr t-size-16"></i>
+			 </div>
+			 <div class="input-in clearfix bottom-line t-size-14 c-black" v-on:click="IsLogin(isLogin ? 'car_edit_set0':'login')">
+			 	 <div class="fl">
+			 	 	<img src="../image/p3.png"/>
+			 	 	<span>汽车电子档案</span>
+			 	 </div>
+			 	 <i class="icon-font icon-gengduo fr t-size-16"></i>
+
+			 </div>
+			 <div class="input-in clearfix bottom-line t-size-14 c-black">
+			 	 <div class="fl">
+			 	 	<img src="../image/p4.png"/>
+			 	 	<span>绑定微信</span>
+			 	 </div>
+			 	 <span class="fr t-size-14">
+			 	 	<span class="c-gray" >未绑定</span>
+			 	 	<i class="icon-font icon-gengduo t-size-16 block-inline"></i>
+			 	 </span>
+
+			 </div>
+			 <div class="input-in clearfix bottom-line t-size-14 c-black" v-on:click="IsLogin(isLogin ? 'person_set':'login')">
+			 	 <div class="fl">
+			 	 	<img src="../image/p5.png"/>
+			 	 	<span>设置</span>
+			 	 </div>
+			 	 <i class="icon-font icon-gengduo fr t-size-16"></i>
+			 </div>
+			 <div class="input-in clearfix bottom-line t-size-14 c-black" v-on:click="IsLogin(isLogin ? 'my_more':'login')">
+			 	 <div class="fl">
+			 	 	<img src="../image/p6.png"/>
+			 	 	<span>更多</span>
+			 	 </div>
+			 	 <i class="icon-font icon-gengduo fr t-size-16"></i>
+			 </div>
+		</div>
+		<script type="text/javascript" src="../script/lib/api.js"></script>
+		<script type="text/javascript" src="../script/js/commom.js"></script>
+		<script type="text/javascript" src="../script/js/person.js"></script>
+	</body>
+</html>

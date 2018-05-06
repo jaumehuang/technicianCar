@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0,user-scalable=no">
+		<meta content="yes" name="apple-mobile-web-app-capable" />
+		<meta content="black" name="apple-mobile-web-app-status-bar-style" />
+		<meta content="telephone=no" name="format-detection" />
+		<script type="text/javascript" src="../script/lib/flexible.js"></script>
+		<link rel="stylesheet" href="../css/iconfont.css" />
+		<link rel="stylesheet" href="../css/basic.css" />
+		<link rel="stylesheet" href="../css/style.css" />
+		<link rel="stylesheet" href="../css/swiper.min.css" />
+		<script type="text/javascript" src="../script/lib/vue.min.js"></script>
+		<title>首页</title>
+		<style type="text/css">
+			.swiper-pagination-fraction,
+			.swiper-pagination-custom,
+			.swiper-container-horizontal>.swiper-pagination-bullets {
+				width: auto;
+				position: absolute;
+				right: 0.375rem;
+				bottom: 0.21875rem;
+				width: 100%;
+				text-align: right;
+			}
+
+			.swiper-pagination-bullet {
+				opacity: 1;
+			}
+
+			.swiper-pagination-bullet {
+				background: #f7f7f7;
+				height: 0.165rem;
+				width: 0.165rem;
+				display: inline-block;
+			}
+
+			.swiper-pagination-bullet-active {
+				background: #fff;
+				height: 0.18rem;
+				width: 0.375rem;
+				border-radius: 0.125rem;
+			}
+		</style>
+	</head>
+
+	<body class="home">
+
+		<div id="home">
+			<div style="background: #fff;left:0;padding:0.3125rem 0.375rem;">
+				<input type="search" ref="Words" v-on:click="openView('search',1)" placeholder="请输入您想搜索的信息" class="t-center  t-size-12" style="height:0.78125rem;background: #f5f5f5;width:100%;border-radius: 4px;" />
+			</div>
+			<div class="banner swiper-container">
+				<div class="swiper-wrapper">
+
+					<div class="swiper-slide" v-for="item in bannerList">
+						<img v-bind:src="item.Value" alt="">
+					</div>
+
+				</div>
+				<div class="swiper-pagination"></div>
+			</div>
+			<nav class="nav-list clearfix">
+				<a class="nav-li fl c-black" href="#" v-on:click="IsLogin(isLogin ? 'export_consult':'login')">
+					<img src="../image/nav0.png" />
+					<div class="t-size-14">马上提问</div>
+				</a>
+				<a class="nav-li fl c-black" href="#" v-on:click="IsLogin(isLogin ? 'search_expert2':'login')">
+					<img src="../image/nav1.png" />
+					<div class="t-size-14">咨询专家</div>
+				</a>
+				<a class="nav-li fl c-black" href="#" v-on:click="IsLogin(isLogin ? 'car_repair':'login')">
+					<img src="../image/nav2.png" />
+					<div class="t-size-14">我要修车</div>
+				</a>
+				<a class="nav-li fl c-black" href="#" v-on:click="IsLogin(isLogin ? 'join':'login')">
+					<img src="../image/nav3.png" />
+					<div class="t-size-14">加入我们</div>
+				</a>
+			</nav>
+			<div class="main-c">
+				<div class="title clearfix" v-show="ok1" v-on:click="openView('new',1)">
+					<span class="fl t-size-14 title-line c-orange">维保资讯</span>
+					<span class="fr t-size-12 more">
+					更多
+					<i class="icon-font icon-gengduo fr c-black t-size-14"></i>
+				</span>
+
+				</div>
+				<ul class="pr-list information-list">
+					<li class="pr-li clearfix bottom-line" v-for="item in List1" v-on:click="openView('news_detail',item.Guid)">
+						<img v-bind:src="item.Image" class="fl show-img" />
+						<div class="content fl">
+							<div class="title-p t-size-14 c-black ellipse_two">{{item.Title}}</div>
+							<div class="t-size-12 c-gray">{{item.ClickCount}}</div>
+						</div>
+					</li>
+
+				</ul>
+			</div>
+
+			<div class="main-c ">
+				<div class="title clearfix" v-show="ok2" v-on:click="openView('technician_answer')">
+					<span class="fl t-size-14 title-line c-orange">精品案列</span>
+					<span class="fr t-size-12 more">
+					更多
+					<i class="icon-font icon-gengduo fr c-black t-size-14"></i>
+				</span>
+
+				</div>
+				<ul class="pr-list good-list">
+					<li class="pr-li" v-for="item in List2" v-on:click="openView('expert_detail',item.Guid)">
+						<div class="bg">
+							<div class="P-P ellipse_three t-size-12 c-black">{{item.Title}}</div>
+							<div class="content clearfix">
+								<div class="grade-info fl">
+									<img v-bind:src="item.MemberPhoto" class="photo" />
+									<span class="t-size-12">{{item.MemberName}}</span>
+								</div>
+								<!-- <div class="fr t-size-12 c-red">{{item.Commission}}元</div> -->
+							</div>
+						</div>
+					</li>
+
+				</ul>
+			</div>
+			<div class="main-c">
+				<div class="title clearfix" v-show="ok3">
+					<span class="fl t-size-14 title-line c-orange">车主评价</span>
+					<span class="fr t-size-12 more">
+					更多
+					<i class="icon-font icon-gengduo fr c-black t-size-14"></i>
+				</span>
+
+				</div>
+				<ul class="pr-list comment-list">
+					<li class="pr-li">
+						<div class="person-info bottom-line">
+							<div class="clearfix">
+								<img src="../image/gril.jpeg" class="fl" />
+								<div class="fl">
+									<div class="t-size-12 c-black">152121</div>
+									<div class="t-size-12 c-gray">121212</div>
+								</div>
+							</div>
+							<div class="c-black t-size-12 bottom ">
+								godfdfd
+							</div>
+
+						</div>
+						<div class="content">
+							<div class="t-size-12 c-black ellipse_three">
+								sdsdsdsdskvfdkjvhzjkkjdhk
+							</div>
+							<div class="img-list clearfix ">
+								<img src="../image/gril.jpeg" />
+								<img src="../image/gril.jpeg" />
+								<img src="../image/gril.jpeg" />
+							</div>
+							<div class="grade-info">
+								<img src="../image/gril.jpeg" class="photo" />
+								<span class="t-size-12">张</span>
+								<img src="../image/king.png" class="k-img" />
+								<span class="t-size-12 c-yellow">dsds</span>
+								<img class="k-img" src="../image/up.png" />
+							</div>
+						</div>
+					</li>
+				</ul>
+			</div>
+		</div>
+		<script type="text/javascript" src="../script/lib/api.js"></script>
+		<script type="text/javascript" src="../script/js/commom.js"></script>
+		<script type="text/javascript" src="../script/lib/swiper.min.js"></script>
+		<script type="text/javascript" src="../script/js/home.js"></script>
+		<script>
+		</script>
+	</body>
+
+</html>

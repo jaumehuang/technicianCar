@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0,user-scalable=no">
+	<meta content="yes" name="apple-mobile-web-app-capable" />
+	<meta content="black" name="apple-mobile-web-app-status-bar-style" />
+	<meta content="telephone=no" name="format-detection" />
+	<script type="text/javascript" src="../script/lib/flexible.js"></script>
+	<link rel="stylesheet" href="../css/iconfont.css" />
+	<link rel="stylesheet" href="../css/aui.css" />
+	<link rel="stylesheet" href="../css/aui-pull-refresh.css" />
+	<link rel="stylesheet" href="../css/basic.css" />
+	<link rel="stylesheet" href="../css/style.css" />
+	<script type="text/javascript" src="../script/lib/vue.min.js"></script>
+	<title>技师回答</title>
+	<style>
+		.technicians .search-list {
+			margin-top: 1rem;
+		}
+
+		.aui-refresh-load {
+			top: -0.3125rem;
+		}
+
+		.answer .search-li .search-list .search-li0 img.img-li {
+			height: 2.62rem;
+			width: 2.62rem;
+		}
+		.technicians .theme-list .theme-li{
+			margin-bottom:0.25rem;
+		}
+		.technicians .theme-list{
+
+			padding-bottom:0;
+			display: none;
+		}
+		.technicians .theme-list-block{
+			display: block;
+		}
+		.mask-block{
+			display: block;
+		}
+	</style>
+</head>
+
+<body class="search-result technicians answer">
+
+	<div id="technician_answer">
+		<header class="clearfix search">
+			<i class="icon-font icon-zuo fl t-size-16" onclick="api.closeWin()"></i>
+			<input type="search" placeholder="搜索技师回答" class="t-center fl t-size-12" ref="Words" @keypress="getKeywords()" />
+		</header>
+		<div class="container">
+
+			<div class="search-li">
+				<nav class="list clearfix bottom-line ">
+					<a href="#" class="li t-size-14 fl t-center c-black " v-on:click="randomSwitchBtn(0)"  v-bind:class="{active:changeIndex===0}" ref="problem" >问题类型<i class="icon-font " v-bind:class="changeIndex===0 ? 'icon-sanjiaoxing-down':'icon-sanjiaoxing-up'"></i></a>
+					<a href="#" class="li t-size-14 fl t-center c-black"  v-on:click="randomSwitchBtn(1)" v-bind:class="{active:changeIndex===1}" >品牌<i class="icon-font "      v-bind:class="changeIndex===1 ? 'icon-sanjiaoxing-down':'icon-sanjiaoxing-up'"></i> </a>
+					<a href="#" class="li t-size-14 fl t-center c-black"  v-on:click="randomSwitchBtn(2)" v-bind:class="{active:changeIndex===2}" >发生场景<i class="icon-font " v-bind:class="changeIndex===2 ? 'icon-sanjiaoxing-down':'icon-sanjiaoxing-up'"></i></a>
+				</nav>
+				<ul class="theme-list clearfix" v-bind:class="{'theme-list-block':iStheme}">
+					<li class="theme-li t-size-12 c-black fl" v-on:click="themeSwitchBtn(0,$event)" v-bind:class="{active:themeIndex0===0}">故障咨询</li>
+					<li class="theme-li t-size-12 c-black fl" v-on:click="themeSwitchBtn(1,$event)" v-bind:class="{active:themeIndex0===1}">维保资讯</li>
+					<li class="theme-li t-size-12 c-black fl" v-on:click="themeSwitchBtn(2,$event)" v-bind:class="{active:themeIndex0===2}">配件资讯</li>
+					<li class="theme-li t-size-12 c-black fl" v-on:click="themeSwitchBtn(3,$event)" v-bind:class="{active:themeIndex0===3}">碰撞事故</li>
+					<li class="theme-li t-size-12 c-black fl" v-on:click="themeSwitchBtn(4,$event)" v-bind:class="{active:themeIndex0===4}">其他问题</li>
+				</ul>
+				<div class="mask " v-bind:class="{'mask-block':isMask}" @click="CloseMask()"></div>
+				<section class="aui-refresh-content">
+					<div class="aui-content">
+						<ul class="search-list">
+							<li class="search-li0" v-for="item in List2" @click="openView('expert_detail',item.Guid)">
+								<div class="t-size-14 c-black ellipse_three">
+									{{item.Title}}
+								</div>
+								<div class="show-img clearfix">
+									<img v-bind:src="li" class="img-li fl" v-for="(li,index) in ( item.Image.indexOf('|') != -1  ? item.Image.split('|') : [item.Image]) " @click.stop="PhotoBrowser( item.Image.indexOf('|') != -1  ? item.Image.split('|') : [item.Image],index)" />
+								</div>
+								<div class="clearfix t-size-12 bottom-tilte bottom-line">
+									<div class="fl c-gray ">{{item.CreateTime}}</div>
+									<div class="fr">已有<span class="c-orange">{{item.rownum}}</span>人回答</div>
+								</div>
+							</li>
+						</ul>
+					</div>
+			</div>
+			</section>
+		</div>
+	</div>
+	<script type="text/javascript" src="../script/lib/api.js"></script>
+	<script type="text/javascript" src="../script/js/commom.js"></script>
+	<script type="text/javascript" src="../script/lib/swiper.min.js"></script>
+	<script type="text/javascript" src="../script/lib/aui-pull-refresh.js"></script>
+	<script type="text/javascript" src="../script/js/technician_answer.js"></script>
+	<script>
+		//下拉刷新
+		var pullRefresh = new auiPullToRefresh({
+			container: document.querySelector('.aui-refresh-content'),
+			triggerDistance: 100
+		}, function(ret) {
+			if (ret.status == "success") {
+				setTimeout(function() {
+
+					pullRefresh.cancelLoading(); //刷新成功后调用此方法隐藏
+				}, 1500)
+			}
+		})
+	</script>
+</body>
+
+</html>

@@ -1,0 +1,9 @@
+body {
+  height: 100px; }
+  body div {
+    text-emphasis-color: "red";
+    font-size: 100px; }
+    body div div {
+      color: "bule";
+      text-align: center;
+      table-layout: fixed; }

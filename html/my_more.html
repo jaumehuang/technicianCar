@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0,user-scalable=no">
+		<meta content="yes" name="apple-mobile-web-app-capable" />
+		<meta content="black" name="apple-mobile-web-app-status-bar-style" />
+		<meta content="telephone=no" name="format-detection" />
+		<script type="text/javascript" src="../script/lib/flexible.js"></script>
+		<link rel="stylesheet" href="../css/iconfont.css" />
+		<link rel="stylesheet" href="../css/basic.css" />
+		<link rel="stylesheet" href="../css/style.css" />
+		<script type="text/javascript" src="../script/lib/vue.min.js"></script>
+		<title>更多</title>
+	</head>
+
+	<body class="person-info">
+		<header class="bottom-line">
+			<i class="icon-font icon-zuo t-size-16 fl " onclick="api.closeWin()"></i>
+			<span class="t-center t-size-16">更多</span>
+		</header>
+		<div class="container" id="mymore">
+
+
+			<div class="input_in clearfix bottom-line">
+				<span class="fl t-size-14">车主认证</span>
+				<div class="fr">
+
+					<i class="icon-font icon-gengduo t-size-16"></i>
+				</div>
+			</div>
+			<div class="input_in clearfix bottom-line" @click="openView('my_query')">
+				<span class="fl t-size-14">维保参考价格</span>
+				<div class="fr">
+
+					<i class="icon-font icon-gengduo t-size-16"></i>
+				</div>
+			</div>
+
+		</div>
+		<script type="text/javascript" src="../script/lib/api.js"></script>
+		<script type="text/javascript" src="../script/js/commom.js"></script>
+		<script type="text/javascript" src="../script/js/mymore.js"></script>
+
+	</body>
+
+</html>

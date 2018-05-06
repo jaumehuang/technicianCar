@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0,user-scalable=no">
+		<meta content="yes" name="apple-mobile-web-app-capable" />
+		<meta content="black" name="apple-mobile-web-app-status-bar-style" />
+		<meta content="telephone=no" name="format-detection" />
+		<script type="text/javascript" src="../script/lib/flexible.js"></script>
+		<link rel="stylesheet" href="../css/iconfont.css" />
+		<link rel="stylesheet" href="../css/aui.css" />
+		<link rel="stylesheet" href="../css/aui-pull-refresh.css" />
+		<link rel="stylesheet" href="../css/basic.css" />
+		<link rel="stylesheet" href="../css/style.css" />
+		<script type="text/javascript" src="../script/lib/vue.min.js"></script>
+		<title>故障列表</title>
+		<style>
+			.aui-refresh-load{
+				top:-200%;
+			}
+			.container .aui-content .list-li{
+				z-index: 1000;
+			}
+			.aui-refresh-pull-arrow{
+				top:250%;
+			}
+		</style>
+
+	</head>
+
+	<body class="ask">
+		<header class="bottom-line">
+			<i class="icon-font icon-zuo t-size-16 fl " onclick="api.closeWin()"></i>
+			<span class="t-center t-size-16">故障现象</span>
+		</header>
+		<section class="aui-refresh-content">
+		<div class="container fault_list" id="fault_list">
+			
+				<div class="aui-content">
+					<ul class="" >
+						<li class="list-li bottom-line t-size-12" v-for="item in list1" @click="changeFault(item.Guid,item.Name)">{{item.Name}}</li>
+					</ul>
+				</div>
+			
+		</div>
+		</section>
+		<script type="text/javascript" src="../script/lib/api.js"></script>
+		<script type="text/javascript" src="../script/js/commom.js"></script>
+		<script type="text/javascript" src="../script/lib/aui-pull-refresh.js"></script>
+		<script type="text/javascript" src="../script/js/fault_list.js"></script>
+       <script>
+
+
+       </script>
+	</body>
+
+</html>

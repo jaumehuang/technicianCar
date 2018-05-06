@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0,user-scalable=no">
+	<meta content="yes" name="apple-mobile-web-app-capable" />
+	<meta content="black" name="apple-mobile-web-app-status-bar-style" />
+	<meta content="telephone=no" name="format-detection" />
+	<script type="text/javascript" src="../script/lib/flexible.js"></script>
+	<link rel="stylesheet" href="../css/iconfont.css" />
+	<link rel="stylesheet" href="../css/aui.css" />
+	<link rel="stylesheet" href="../css/aui-pull-refresh.css" />
+	<link rel="stylesheet" href="../css/basic.css" />
+	<link rel="stylesheet" href="../css/style.css" />
+	<script type="text/javascript" src="../script/lib/vue.min.js"></script>
+	<title>技师回答</title>
+	<style media="screen">
+		[v-cloak] {
+			display: none !important;
+		}
+		.aui-refresh-load {
+				top:-10px;
+			}
+	</style>
+</head>
+
+<body class="search-result technicians  search-technicians ">
+	<div id="search_technicians" v-cloak >
+	<header class="clearfix search">
+		<i class="icon-font icon-zuo fl t-size-16"></i>
+		<input type="search" placeholder="搜索技师回答" class="t-center fl t-size-12" />
+	</header>
+	<div class="container">
+		<div class="search-li">
+			<nav class="list clearfix bottom-line ">
+				<a href="#" class="li t-size-16 fl t-center c-black " v-on:click="randomSwitchBtn($event,0)" v-bind:class="{active:changeIndex===0}"><span ref="nav0" v-text="switchBool0 ? '离我最远' : '离我最近'">离我最近</span><i class="icon-font " v-bind:class="switchBool0 ? 'icon-sanjiaoxing-down':'icon-sanjiaoxing-up'"></i></a>
+				<a href="#" class="li t-size-16 fl t-center c-black" v-on:click="randomSwitchBtn($event,1)" v-bind:class="{active:changeIndex===1}"><span  ref="nav1" v-text="switchBool1 ? '评分最低' : '评分最高'">评分最高</span><i class="icon-font "  v-bind:class="switchBool1 ? 'icon-sanjiaoxing-down':'icon-sanjiaoxing-up'"></i> </a>
+				<a href="#" class="li t-size-16 fl t-center c-black" v-on:click="randomSwitchBtn($event,2)" v-bind:class="{active:changeIndex===2}"><span  ref="nav2">接单次数</span><i class="icon-font "  v-bind:class="switchBool2 ? 'icon-sanjiaoxing-down':'icon-sanjiaoxing-up'"></i></a>
+			</nav>
+			<section class="aui-refresh-content">
+				<div class="aui-content">
+					<ul class="search-list" style="margin-top:1rem">
+						<li class="search-li0" v-for="item in list1" @click="openView('technician_home2',item.Guid)">
+							<div class="clearfix">
+								<img v-bind:src="item.Photo" class="fl technician-img" />
+								<div class="fl content bottom-line">
+									<div class="fl t-size-12">
+										<div class="clearfix">
+											<span class="fl" v-text="item.RealName"></span>
+											<img  src="../image/king.png" class="sign fl" />
+											<span class="fl" v-text="item.Name"></span>
+											<img src="../image/qi.png" class="sign fl" />
+										</div>
+										<div>21221</div>
+										<div>
+											<i class="icon-font icon-dingwei c-gray t-size-16"></i>
+											<span class="t-size-14" v-text="item.Range+'千米'"></span>
+										</div>
+									</div>
+									<div class="fr">
+										<div class="t-size-14">评分:&nbsp;<span class="c-red" v-text="item.AverageGrade"></span></div>
+										<button class="btn-small c-orange btn-bg-white t-size-14" @click.stop="openView('car_repair',item.Guid)">预约</button>
+									</div>
+								</div>
+							</div>
+						</li>
+					</ul>
+				</div>
+			</section>
+		</div>
+		<script type="text/javascript" src="../script/lib/api.js"></script>
+		<script type="text/javascript" src="../script/js/commom.js"></script>
+		<script type="text/javascript" src="../script/lib/aui-pull-refresh.js"></script>
+		<script type="text/javascript" src="../script/js/search_technician.js"></script>
+	</div>
+</div>
+</body>
+
+</html>

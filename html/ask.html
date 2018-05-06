@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0,user-scalable=no">
+		<meta content="yes" name="apple-mobile-web-app-capable" />
+		<meta content="black" name="apple-mobile-web-app-status-bar-style" />
+		<meta content="telephone=no" name="format-detection" />
+		<script type="text/javascript" src="../script/lib/flexible.js"></script>
+		<link rel="stylesheet" href="../css/iconfont.css" />
+		<link rel="stylesheet" href="../css/basic.css" />
+		<link rel="stylesheet" href="../css/style.css" />
+		<title>专家咨询</title>
+		<script type="text/javascript" src="../script/lib/vue.min.js"></script>
+		<style>
+			 .area{
+			 	position:relative;
+
+			 }
+			 .num{
+			 	position: absolute;
+			 	right:0.75rem;
+			 	bottom:0.375rem;
+			 }
+		</style>
+	</head>
+	<body class="ask">
+		<header class="bottom-line">
+			<i class="icon-font icon-zuo t-size-16 fl " onclick="api.closeWin()"></i>
+			<span class="t-center t-size-16">专家咨询</span>
+		</header>
+		<div class="container" id="ask">
+			<div class="technician-info clearfix">
+				 <img v-bind:src="person.Photo" class="fl"/>
+				 <div class="content fl">
+				 	 <div class="t-size-14">
+				 	 	<span class="t-size-16">{{person.RealName}}</span>
+				 	 	<img src="../image/king.png"/>
+				 	 	<span>{{person.Name}}</span>
+				 	 	<img v-bind:src="companyArr[person.IsCompany]" />
+				 	 </div>
+				 	 <div class="clearfix t-size-14">
+				 	 	 <div class="fl grade">
+				 	 	    评分:
+				 	 	 	<span class="c-red">{{person.AverageGrade}}</span>
+				 	 	 </div>
+				 	 	 <div class="fl problem">{{person.OrderCount}}人咨询</div>
+				 	 </div>
+				 </div>
+			</div>
+			<ul class="ask-list clearfix ">
+				 <li class="ask-li fl t-size-12  c-black "@click="changePromble($event,0)" v-bind:class="{'active-li':index===0}">故障咨询</li>
+				 <li class="ask-li fl t-size-12  c-black" @click="changePromble($event,1)" v-bind:class="{'active-li':index===1}">维保资讯</li>
+				 <li class="ask-li fl t-size-12  c-black" @click="changePromble($event,2)" v-bind:class="{'active-li':index===2}">配件资讯</li>
+				 <li class="ask-li fl t-size-12  c-black" @click="changePromble($event,3)" v-bind:class="{'active-li':index===3}">碰撞事故</li>
+				 <li class="ask-li fl t-size-12  c-black" @click="changePromble($event,4)" v-bind:class="{'active-li':index===4}">其他问题</li>
+			</ul>
+			<div class="area">
+				<textarea class=" t-size-14" cols="" rows="10" placeholder="请问：您开的是什么车？哪年的？跑了几公里？出现了 什么问题？持续出现，还是在特定条件下才会出现？有照片吗？" ref="texTarea" v-model="areaText"></textarea>
+        <span class="num t-size-12 c-gray"  v-mode="num" ref="num">字数0</span>
+			</div>
+			<div class="show-img clearfix">
+				<div class="img-list fl clearfix">
+
+					<div class="show-bf fl" v-for="(item,index) in imgarr">
+						<img v-bind:src="item" class="show-li " />
+						<i class="icon-font icon-guanbi c-black" @click="deleteImg(index)"></i>
+					</div>
+					<div class="img-item t-center fl " @click="OpenImg()">
+						<img src="../image/picture.png" />
+						<div class="t-size-12 c-gray">添加图片</div>
+					</div>
+				</div>
+
+			</div>
+		    <ul class="ask-list2">
+					<li class="clearfix ask-li2 bottom-line t-size-14" @click="openView('car_brand')">
+						<span class="fl">咨询车型</span>
+						<div class="fr">
+							<span ref="carType"></span>
+							<i class="icon-font icon-gengduo"></i>
+						</div>
+					</li>
+					<li class="clearfix ask-li2 t-size-14" @click="openView('fault_list')">
+						<span class="fl">故障现象</span>
+						<div class="fr">
+							<span ref="fault"></span>
+							<i class="icon-font icon-gengduo"></i>
+						</div>
+					</li>
+		    </ul>
+				<footer>
+					<button class="btn-very-large c-white btn-bg-o t-size-16" @click="BtnData()">确认咨询</button>
+				</footer>
+		</div>
+		<div class="null" style="height:1.875rem"></div>
+		<script type="text/javascript" src="../script/lib/api.js"></script>
+		<script type="text/javascript" src="../script/js/commom.js"></script>
+		<script type="text/javascript" src="../script/lib/swiper.min.js"></script>
+		<script type="text/javascript" src="../script/js/ask.js"></script>
+
+	</body>
+</html>

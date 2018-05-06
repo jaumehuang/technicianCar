@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0,user-scalable=no">
+		<meta content="yes" name="apple-mobile-web-app-capable" />
+		<meta content="black" name="apple-mobile-web-app-status-bar-style" />
+		<meta content="telephone=no" name="format-detection" />
+		<script type="text/javascript" src="../script/lib/flexible.js"></script>
+		<link rel="stylesheet" href="../css/iconfont.css" />
+		<link rel="stylesheet" href="../css/basic.css" />
+		<link rel="stylesheet" href="../css/style.css" />
+		<script type="text/javascript" src="../script/lib/vue.min.js"></script>
+		<title>技师主页</title>
+		<style media="screen">
+			[v-cloak] {
+				display: none !important;
+			}
+
+		</style>
+	</head>
+
+	<body class="technician-home answer search-result">
+		<div id="technician_answer2">
+		<header class="bottom-line search">
+			<i class="icon-font icon-zuo fl t-size-16"></i>
+			<input type="search" placeholder="搜索技师回答" class="t-center fl t-size-12"  />
+		</header>
+		<div  class="container">
+
+			<div class="he-answer t-size-16">
+				技师回答
+			</div>
+			<ul class="search-list" v-cloak>
+				<li class="search-li0" v-for="item in list1">
+					<div class="t-size-14 c-black ellipse_three">
+						{{item.Title}}
+					</div>
+					<div class="show-img clearfix">
+						<img v-bind:src="li" class="img-li" style="width:2.7rem;height:2.6rem;border-radius: 4px;" v-for="(li,index) in ( item.Image.indexOf('|') != -1  ? item.Image.split('|') : [item.Image]) " @click.stop="PhotoBrowser( item.Image.indexOf('|') != -1  ? item.Image.split('|') : item.Image,index)"
+						/>
+
+					</div>
+					<div class="clearfix t-size-16 bottom-tilte bottom-line">
+						<div class="fl c-gray">{{item.CreateTime}}</div>
+
+					</div>
+				</li>
+
+			</ul>
+		</div>
+			<script type="text/javascript" src="../script/lib/api.js"></script>
+  		<script type="text/javascript" src="../script/js/commom.js"></script>
+  		<script type="text/javascript" src="../script/js/technician_answer2.js"></script>
+		</div>
+
+	</body>
+
+</html>

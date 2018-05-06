@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0,user-scalable=no">
+		<meta content="yes" name="apple-mobile-web-app-capable" />
+		<meta content="black" name="apple-mobile-web-app-status-bar-style" />
+		<meta content="telephone=no" name="format-detection" />
+		<script type="text/javascript" src="../script/lib/flexible.js"></script>
+		<link rel="stylesheet" href="../css/iconfont.css" />
+		<link rel="stylesheet" href="../css/ydui.css" />
+		<link rel="stylesheet" href="../css/basic.css" />
+		<link rel="stylesheet" href="../css/style.css" />
+		<script type="text/javascript" src="../script/lib/vue.min.js"></script>
+		<title>支付</title>
+		<style>
+			.pay .container .pay-list .pay-li i.icon-30xuanzhongfangxing {
+				color: #ff6634;
+				/*font-size:0.5rem;*/
+			}
+		</style>
+	</head>
+
+	<body class="pay">
+		<header class="bottom-line">
+			<i class="icon-font icon-zuo t-size-16 fl " onclick="root()"></i>
+			<span class="t-center t-size-16">确认支付</span>
+		</header>
+		<div class="container" id="pay">
+			<div class="t-size-14 top-title" ref="shouldpay"></div>
+			<ul class="pay-list">
+				<li class="pay-li clearfix bottom-line">
+					<div class="fl t-size-12">
+						<img src="../image/pay0.png" class="fl" />
+						<div class="fl comment">
+							<div class="">余额支付</div>
+							<div class="c-gray" ref="AdvancePayment"></div>
+						</div>
+					</div>
+					<i class="icon-font  fr t-size-16 c-gray " @click="SwitchPay(0)" v-bind:class="changeIndex ===0 ? 'icon-30xuanzhongfangxing' : 'icon-fangxingweixuanzhong' "></i>
+				</li>
+				<li class="pay-li clearfix bottom-line">
+					<div class="fl t-size-12">
+						<img src="../image/pay1.png" class="fl" />
+						<div class="fl comment">
+							<div class="pay-item">微信支付</div>
+						</div>
+					</div>
+					<i class="icon-font  fr t-size-16 c-gray" @click="SwitchPay(1)" v-bind:class="changeIndex ===1 ? 'icon-30xuanzhongfangxing' : 'icon-fangxingweixuanzhong' "></i>
+				</li>
+				<li class="pay-li clearfix">
+					<div class="fl t-size-12">
+						<img src="../image/pay2.png" class="fl" />
+						<div class="fl comment">
+							<div class="pay-item">支付宝支付</div>
+						</div>
+					</div>
+					<i class="icon-font  fr t-size-16 c-gray" @click="SwitchPay(2)" v-bind:class="changeIndex ===2 ? 'icon-30xuanzhongfangxing' : 'icon-fangxingweixuanzhong' "></i>
+				</li>
+			</ul>
+
+			<button class="btn-large btn-bg-o t-size-16"  @click="OpenKeyborad()">立即支付</button>
+			<div class="m-keyboard" id="J_KeyBoard">
+				<!-- 自定义内容区域 -->
+				<div style="text-align: right;padding: .15rem .8rem 0;">
+					<a href="#" style="color: #666;font-size:0.375rem;" @click="openView('pay_password')">忘记密码</a>
+				</div>
+				<!-- 自定义内容区域 -->
+			</div>
+			<a href="#" class="t-size-14 c-orange t-center block-inline  leave">余额充值>></a>
+		</div>
+		<script type="text/javascript" src="../script/lib/api.js"></script>
+		<script type="text/javascript" src="../script/js/commom.js"></script>
+		<script type="text/javascript" src="../script/lib/jquery-3.2.1.min.js"></script>
+		<script type="text/javascript" src="../script/lib/keyboard.js"></script>
+		<script type="text/javascript" src="../script/js/pay.js"></script>
+		
+
+	</body>
+
+</html>

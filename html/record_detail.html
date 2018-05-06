@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0,user-scalable=no">
+		<meta content="yes" name="apple-mobile-web-app-capable" />
+		<meta content="black" name="apple-mobile-web-app-status-bar-style" />
+		<meta content="telephone=no" name="format-detection" />
+		<script type="text/javascript" src="../script/lib/flexible.js"></script>
+		<link rel="stylesheet" href="../css/iconfont.css" />
+		<link rel="stylesheet" href="../css/basic.css" />
+		<link rel="stylesheet" href="../css/style.css" />
+		<script type="text/javascript" src="../script/lib/vue.min.js"></script>
+		<title>交易详情</title>
+	</head>
+	<body class="record_detail">
+		 <header class="bottom-line">
+		 	 <i class="icon-font icon-zuo t-size-16 fl " onclick="api.closeWin()"></i>
+		 	 <span class="t-center t-size-16">交易详情</span>
+		 </header>
+		<div class="container" id="record_detail">
+			<div class="title clearfix t-size-14 bottom-line">
+				 <span class="fl">付款金额</span>
+				 <span class="fr" v-text="record.OperateMoney"></span>
+			</div>
+			<ul class="pr-list">
+				<li class="pr-li clearfix t-size-12">
+					<span  class="fl">交易详情</span>
+					<span  class="fr c-gray" v-text="record.Memo"></span>
+				</li>
+				<li class="pr-li clearfix t-size-12">
+					<span  class="fl">交易时间</span>
+					<span  class="fr c-gray" v-text="record.CreateTime"></span>
+				</li>
+			</ul>
+		</div>
+		<script type="text/javascript" src="../script/lib/api.js"></script>
+		<script type="text/javascript" src="../script/js/commom.js"></script>
+		<script type="text/javascript" src="../script/js/record_detail.js"></script>
+	</body>
+</html>

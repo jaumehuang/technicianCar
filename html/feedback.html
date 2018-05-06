@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		 <meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0,user-scalable=no">
+		<meta content="yes" name="apple-mobile-web-app-capable" />
+		<meta content="black" name="apple-mobile-web-app-status-bar-style" />
+		<meta content="telephone=no" name="format-detection" />
+		<script type="text/javascript" src="../script/lib/flexible.js"></script>
+		<link rel="stylesheet" href="../css/iconfont.css" />
+		<link rel="stylesheet" href="../css/basic.css" />
+		<link rel="stylesheet" href="../css/style.css" />
+		<script type="text/javascript" src="../script/lib/vue.min.js"></script>
+		<title>问题反馈</title>
+	</head>
+	<body class="feedback">
+		<header class="bottom-line">
+			<i class="icon-font icon-zuo t-size-16 fl " onclick="api.closeWin()"></i>
+			<span class="t-center t-size-16">问题反馈</span>
+		</header>
+		<div class="container" id="feedback">
+			 <h3 class="t-size-16">问题描述</h3>
+			 <div class="" style="position: relative;">
+			 	 <textarea name="" rows="8" cols="" v-model="areaText"  ref="texTarea" class="t-size-12" style="padding:0.25rem">
+
+			  </textarea>
+			 		<span class="num t-size-12 c-gray" style="position: absolute;bottom:0.375rem;right:0.375rem" v-mode="num" ref="num"></span>
+			 </div>
+
+			 <h3 class="t-size-16">联系方式</h3>
+			 <input type="text" class="t-size-12" id="" value="" placeholder="请留下您的联系方式（QQ/微信/电话等）" ref="qq"/>
+			 <button class="btn-large btn-bg-o t-size-16" @click="BtnData()" type="button">提交</button>
+		</div>
+		<script type="text/javascript" src="../script/lib/api.js"></script>
+		<script type="text/javascript" src="../script/js/commom.js"></script>
+		<script type="text/javascript" src="../script/js/feedback.js"></script>
+	</body>
+</html>

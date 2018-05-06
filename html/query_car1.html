@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0,user-scalable=no">
+		<meta content="yes" name="apple-mobile-web-app-capable" />
+		<meta content="black" name="apple-mobile-web-app-status-bar-style" />
+		<meta content="telephone=no" name="format-detection" />
+		<script type="text/javascript" src="../script/lib/flexible.js"></script>
+		<link rel="stylesheet" href="../css/iconfont.css" />
+		<link rel="stylesheet" href="../css/basic.css" />
+		<link rel="stylesheet" href="../css/style.css" />
+		<script type="text/javascript" src="../script/lib/vue.min.js"></script>
+		<link rel="stylesheet" href="../css/swiper.min.css" />
+		<title>我的收藏</title>
+		<style media="screen">
+			[v-cloak] {
+				display: none !important;
+			}
+			
+			.null-follow {
+				display: none;
+			}
+			
+			.null-follow-block {
+				display: block;
+			}
+		</style>
+	</head>
+
+	<body class="comment my-follow  query-car">
+
+		<div class="" id="collection">
+			<header class="bottom-line">
+				<i class="icon-font icon-zuo t-size-16 fl " onclick="api.closeWin()"></i>
+				<span class="t-center t-size-16"></span>
+				<span class="t-center t-size-16 fr" v-on:click="edit()" v-text="editType ? '编辑':'取消'"></span>
+			</header>
+
+			<div class=" container" style="padding:0">
+				<div class="car_more"  >
+					 <ul class="car_list">
+					 	
+					 	 <li class="clearfix car_li bottom-line c-black t-size-12">
+					 	 	 <div class="fl">多少度</div>
+					 	 	 <div class="fr">saas</div>
+					 	 </li>
+					 </ul>
+				</div>
+			</div>
+		</div>
+			<script src="../script/lib/swiper.min.js"></script>
+			<script type="text/javascript" src="../script/lib/api.js"></script>
+			<script type="text/javascript" src="../script/js/commom.js"></script>
+			<!--<script type="text/javascript" src="../script/js/my_collection.js"></script>-->
+    
+	</body>
+
+</html>

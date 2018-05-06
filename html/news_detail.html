@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0,user-scalable=no">
+	<meta content="yes" name="apple-mobile-web-app-capable" />
+	<meta content="black" name="apple-mobile-web-app-status-bar-style" />
+	<meta content="telephone=no" name="format-detection" />
+	<script type="text/javascript" src="../script/lib/flexible.js"></script>
+	<link rel="stylesheet" href="../css/iconfont.css" />
+	<link rel="stylesheet" href="../css/basic.css" />
+	<link rel="stylesheet" href="../css/style.css" />
+	<script type="text/javascript" src="../script/lib/vue.min.js"></script>
+	<title>资讯详情</title>
+	<style>
+		img {
+			width: 100%;
+		}
+		.icon-collect-fill{
+			color:#ff6634;
+		}
+	</style>
+</head>
+
+<body class="news-detail">
+
+	<div class="" id="news_detail">
+		<header class="bottom-line">
+			<i class="icon-font icon-zuo t-size-16 fl " onclick="api.closeWin()"></i>
+			<span class="t-center t-size-16">详情</span>
+			<div class="fr">
+				<i class="icon-font  t-size-18" @click="addCollection()"   v-bind:class="isCollection ? 'icon-collect-fill' : 'icon-shoucang'"></i>
+				<i class="icon-font icon-fenxiang t-size-18" @click="MyShare()"></i>
+			</div>
+		</header>
+		<div class="container" >
+
+			<div class="t-size-16 ellipse_two title">
+				{{arrObj.Title}}
+			</div>
+			<div class="c-gray clearfix t-size-12 time">
+				<span class="">发布时间{{arrObj.CreateTime}}</span>
+				<span class="">{{arrObj.CreateUser}}</span>
+			</div>
+			<div class="t-size-14 main-content" v-html="arrObj.Content">
+			</div>
+		</div>
+	</div>
+	<script type="text/javascript" src="../script/lib/api.js"></script>
+	<script type="text/javascript" src="../script/js/commom.js"></script>
+	<script type="text/javascript" src="../script/js/news_details.js"></script>
+</body>
+
+</html>

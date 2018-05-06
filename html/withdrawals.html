@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0,user-scalable=no">
+	<meta content="yes" name="apple-mobile-web-app-capable" />
+	<meta content="black" name="apple-mobile-web-app-status-bar-style" />
+	<meta content="telephone=no" name="format-detection" />
+	<title>充值</title>
+	<script type="text/javascript" src="../script/lib/flexible.js"></script>
+	<link rel="stylesheet" href="../css/iconfont.css" />
+	<link rel="stylesheet" href="../css/basic.css" />
+	<link rel="stylesheet" href="../css/style.css" />
+	<script type="text/javascript" src="../script/lib/vue.min.js"></script>
+	<style>
+
+		 .withdrawals-display{
+
+			  display: block;
+		 }
+		 	.center-popup{
+			width:7.59375rem;
+			background: #fff;
+			height:7.4rem;
+			border-radius: 4px;
+			display:none;
+			z-index: 1004;
+		}
+		.center-popup-display{
+			display: block;
+		}
+		.center-popup .title{
+			padding:0.3125rem 0;
+		}
+		 .center-popup .sex_li{
+		 	padding:0 0.375rem;
+		 	margin-top:0.625rem;
+		 }
+	   .center-popup .sex_li input {
+			height: 0.4375rem;
+			width: 0.4375rem;
+		}
+		.center-popup .sex_li{
+			position: relative;
+
+		}
+	   .center-popup .sex_li input {
+			position: absolute;
+			top: 0;
+			left: 0.4375rem;
+			opacity: 0;
+			z-index: 100;
+		}
+	   .center-popup .sex_li .icon {
+			display: block;
+			height: 0.4375rem;
+			width: 0.4375rem;
+			background: url(../image/no_check.png) no-repeat center;
+			background-size: contain;
+			margin-top:0.0625rem;
+		}
+
+		   .center-popup .sex_li input[type=radio]:checked+i {
+			background: url(../image/check.png) no-repeat center;
+			background-size: contain;
+		}
+		 .center-popup .sex_li label{
+		 	padding-left: 0.3125rem;
+		 }
+         .center-popup .btn-group{
+         	padding:0.3125rem 0.375rem;
+         	border-top:1px solid #e5e5e5;
+         	margin-top:0.625rem;
+         }
+         .center-popup .btn-group button{
+         	margin-top: 0;
+         }
+	</style>
+</head>
+
+<body class="recharge">
+	<header class="bottom-line" id="header">
+		<i class="icon-font icon-zuo t-size-16 fl " onclick="api.closeWin()"></i>
+		<span class="t-center t-size-16">提现</span>
+		<span class="fr t-size-12" v-on:click="openView('record_withdrawals')">提现记录</span>
+	</header>
+	<div class="container" id="withrawals">
+		<div class="input-in clearfix bottom-line"  v-on:click="ChangePay()">
+			<div class="fl">
+				<div class="clearfix">
+					<span class="t-size-16 fl">提现方式 :&nbsp;</span>
+					<img v-bind:src="WiImg" class="pay-img fl" />&nbsp;
+					<span class="t-size-16" v-text="WitypeName"></span>
+				</div>
+			</div>
+			<i class="icon-font icon-gengduo fr t-size-16"></i>
+		</div>
+		<div class="item weixin hidden-el" v-bind:class="{'withdrawals-display':Witype==='weixin'}">
+			<div class="input-in clearfix t-size-16 bottom-line">
+				<div class="fl ">
+					提现金额 : <input type="number" class="t-size-16"  ref="pay1" :placeholder="money" />
+				</div>
+
+			</div>
+			<div class="input-in clearfix t-size-16 bottom-line">
+				<div class="fl ">
+					真实姓名 : <input type="text" class="t-size-16" placeholder="输入真实姓名" ref="weixin_name"/>
+				</div>
+			</div>
+			<div class="input-in clearfix t-size-16 bottom-line">
+				<div class="fl ">
+					微信账户 : <input type="text" class="t-size-16" placeholder="输入微信账户" ref="weixin_acount"/>
+				</div>
+			</div>
+		</div>
+
+		<div class="item bank hidden-el " v-bind:class="{'withdrawals-display':Witype==='bank'}">
+			<div class="input-in clearfix t-size-16 bottom-line">
+				<div class="fl ">
+					提现金额 : <input type="number" class="t-size-16" :placeholder="money"  ref="pay2"/>
+				</div>
+			</div>
+			<div class="input-in clearfix t-size-16 bottom-line">
+				<div class="fl ">
+					用户名 : <input type="text" class="t-size-16" placeholder="输入银行用户" ref="bank_acount"/>
+				</div>
+			</div>
+
+			<div class="input-in clearfix t-size-16 bottom-line">
+				<div class="fl ">
+					银行卡号 : <input type="number" class="t-size-16" placeholder="银行卡号" ref="bank_num"     name="account" id="account"/>
+				</div>
+			</div>
+
+			<div class="input-in clearfix t-size-16 bottom-line">
+				<div class="fl ">
+					开户银行 : <input type="text" class="t-size-16" placeholder="开户银行" ref="bank_name" />
+				</div>
+			</div>
+		</div>
+
+		<div class="item  aipay hidden-el " v-bind:class="{'withdrawals-display':Witype==='aipay'}">
+			<div class="input-in clearfix t-size-16 bottom-line">
+				<div class="fl ">
+					提现金额 : <input type="number" class="t-size-16" :placeholder="money" ref="pay3"/>
+				</div>
+
+			</div>
+			<div class="input-in clearfix t-size-16 bottom-line">
+				<div class="fl ">
+					支付宝账号 : <input type="number" class="t-size-16" style="width:54%" placeholder="支付宝账号" ref="aipay_num"/>
+				</div>
+
+			</div>
+
+			<div class="input-in clearfix t-size-16 bottom-line">
+				<div class="fl ">
+					真实姓名 : <input type="text" class="t-size-16" placeholder="真实姓名" ref="aipay_name"/>
+				</div>
+
+			</div>
+
+			<!-- <div class="input-in clearfix t-size-16 bottom-line">
+				<div class="fl ">
+					手机号码 : <input type="number" class="t-size-16" placeholder="手机号码" ref="aipay_phone"/>
+				</div>
+			</div> -->
+		</div>
+		 <!-- 支付弹窗-->
+       <div class=" center-popup clearfix"  v-bind:class="{'center-popup-display':isConterPopup}" style="z-index: 10000;">
+          <div class="t-center t-size-16 title bottom-line">选择提现方式</div>
+          <div class="sex_li clearfix" v-on:click="withdrawalsType('weixin')">
+          	 	<input type="radio" class="" id="1" name="pay" checked="checked"/>
+          	     <i class="icon fl"></i>
+          	     <label class="t-size-14" for="1">微信</label>
+          </div>
+          <div class="sex_li clearfix" v-on:click="withdrawalsType('bank')">
+             	<input type="radio" class="" id="2" name="pay"/>
+          	  <i class="icon fl"></i>
+          	  <label class="t-size-14" for="2">银行卡</label>
+          </div>
+          <div class="sex_li clearfix" v-on:click="withdrawalsType('aipay')">
+             	<input type="radio" class="" id="3" name="pay"/>
+          	  <i class="icon fl"></i>
+          	  <label class="t-size-14" for="3">支付宝</label>
+          </div>
+          <div class="btn-group clearfix t-size-18">
+          	  <button class="btn c-orange btn-bg-white fl t-size-16" v-on:click="CloseMask()">取消</button>
+          	   <button class="btn fr c-orange btn-bg-white t-size-16" v-on:click="CloseMask()">确定</button>
+          </div>
+     </div>
+     <div class="mask" v-bind:class="{'mask-block':isMask}" v-on:click="CloseMask()" style="z-index:9999;"></div>
+		<button class="btn-large t-size-18  c-white btn-bg-o" type="button" @click="BtnData(type)">提现</button>
+	</div>
+
+	<script type="text/javascript" src="../script/lib/api.js"></script>
+	<script type="text/javascript" src="../script/js/commom.js"></script>
+	<script type="text/javascript" src="../script/js/withdrawals.js"></script>
+</body>
+
+</html>

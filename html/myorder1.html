@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0,user-scalable=no">
+		<meta content="yes" name="apple-mobile-web-app-capable" />
+		<meta content="black" name="apple-mobile-web-app-status-bar-style" />
+		<meta content="telephone=no" name="format-detection" />
+		<script type="text/javascript" src="../script/lib/flexible.js"></script>
+		<link rel="stylesheet" href="../css/iconfont.css" />
+		<link rel="stylesheet" href="../css/basic.css" />
+		<link rel="stylesheet" href="../css/aui.css" />
+		<link rel="stylesheet" href="../css/aui-pull-refresh.css" />
+		<link rel="stylesheet" href="../css/style.css" />
+		<link rel="stylesheet" href="../css/swiper.min.css" />
+		<script type="text/javascript" src="../script/lib/vue.min.js"></script>
+		<title>订单</title>
+		<style>
+			.pr-list {
+				width: 100%;
+			}
+
+			/*.order1,
+			.order2 {
+				display: none;
+			}
+
+			.order-dispaly {
+				display: block;
+			}*/
+
+
+
+			.myorder nav.list-display-block1 {
+				display: block;
+			}
+
+			.myorder nav.list-display-block2 {
+				display: block;
+			}
+
+			.myorder nav.list-display-block1 a {
+				width: 20%;
+			}
+
+			.myorder nav.list-display-block2 a {
+				width: 25%;
+			}
+
+			.aui-refresh-load {
+				top: 1.125rem;
+			}
+			.btn-group button{
+				display: none;
+			}
+			.btn-group button.display-btn{
+
+				 display:block;;
+			}
+      .null{
+      	 display: none;
+      }
+		.myorder	.display-null{
+				 display: block;
+			}
+			[v-cloak] {
+				display: none !important;
+			 }
+			 .list .li{
+			 	position: relative;
+			 }
+			.num{
+				/*display: block;*/
+				position: absolute;
+			    top: 0;
+			    right: 18%;
+			    height: 0.5rem;
+			    width: 0.5rem;
+			    background: #d20000;
+			    color: #fff;
+			    border-radius: 50%;
+			    font-size: 0.3125rem;
+			    line-height: 0.54rem;
+					display: none;
+			}
+		</style>
+	</head>
+
+	<body class="myorder">
+		<div id="myorder" >
+
+			<header class="t-size-16 bottom-line" v-on:click="randomSwitchBtn()">
+				<span >维修订单</span><i class="icon-font  t-size-16" v-bind:class="changeIndex===0 ? 'icon-sanjiaoxing-down':'icon-sanjiaoxing-up'"></i>
+			</header>
+			<ul class="theme-list" v-bind:class="{'theme-list-dispaly':iStheme}">
+				<li class="theme-li t-size-14 t-center c-black bottom-line c-orange " v-on:click="themeSwitchBtn(0,$event)" >维修订单</li>
+				<li class="theme-li t-size-14 t-center c-black bottom-line" v-on:click="themeSwitchBtn(1,$event)"  >咨询订单</li>
+			</ul>
+			<div class="mask " v-bind:class="{'mask-block':isMask}"></div>
+			<div class="">
+				<nav class="list clearfix bottom-line list-display-block">
+					<a href="#" class="li t-size-16 fl t-center c-black "  v-bind:class="{active:navList1===0}">全部<span class="num " ref="num0"></span></a>
+					<a href="#" class="li t-size-16 fl t-center c-black"   v-bind:class="{active:navList1===1}">待接单<span class="num " ref="num1"></span></a>
+					<a href="#" class="li t-size-16 fl t-center c-black"   v-bind:class="{active:navList1===2}">待付款<span class="num " ref="num2" ></span></a>
+					<a href="#" class="li t-size-16 fl t-center c-black"   v-bind:class="{active:navList1===3}">服务中<span class="num " ref="num3"></span></a>
+					<a href="#" class="li t-size-16 fl t-center c-black"   v-bind:class="{active:navList1===4}">待评价<span class="num " ref="num4"></span></a>
+				</nav>
+
+			</div>
+
+			<section class="aui-refresh-content">
+				<div class="aui-content">
+					<div class="order1  swiper-container "  id="order1" v-cloak  >
+
+						<div class="swiper-wrapper" ref="swiperwrapper1">
+							<ul class="container pr-list swiper-slide" v-for="(items,index) in orderlist1">
+								<li class="pr-li" v-for="(item,index) in items.order" v-show="items.order  ? true : false " @click="openView('wait_comment',item.OrderNumber+'|'+item.WorkerLoginId)">
+									<div class="title-line bottom-line clearfix">
+										<span class="fl t-size-16 c-black">维修订单</span>
+										<span class="fr t-size-16 c-red" v-text="statusText1[item.OrderStatus]"></span>
+									</div>
+									<div class="car-master">
+										<div class="clearfix show-main" v-show="item.WorkerName == '' ? false :true">
+											<div class="fl">
+												<img v-bind:src="item.WorkerPhoto" class="photo fl" />
+												<div class="fl content t-size-14 clearfix">
+													<span class="t-size-14 fl" v-text="item.WorkerName"></span>
+													<img src="../image/king.png" class="king-img fl" />
+													<span class="fl" v-text="item.WorkerRankName"></span>
+													<img src="../image/up.png" class="king-img fl" />
+												</div>
+											</div>
+											<div class="fr c-gray t-size-14">
+												<i class="icon-font icon-dingwei"></i>
+												<span class="c-black" v-text="item.Range +'千米'"></span>
+
+											</div>
+										</div>
+										<ul class="car-list bottom-line">
+											<li class="car-li t-size-12 ">
+												<div class="c-black" v-text="'车牌号:'+ item.CarNumber"></div>
+												<div class="c-black" v-text="'预约时间:'+ item.SubscribeTime"></div>
+											</li>
+
+										</ul>
+										<div class="btn-group clearfix">
+											<div class="fl c-red t-size-16" v-text="item.BuyPrice+'元'"></div>
+											<button class="btn-small c-white t-size-12 btn-is fr"  v-bind:class="{'display-btn':(item.OrderStatus)%6 != 0 }" @click.stop="SwitchView(item,index)" v-text="statusBtn1[item.OrderStatus]"></button>
+											<!-- <button class="btn-small c-black t-size-12 btn-is fr"  v-bind:class="{'display-btn': item.OrderStatus == 5}" @click.prevent="openView(item.OrderStatus,item.OrderNumber)" v-text="statusBtn1[5]"></button> -->
+											<button class="btn-small c-black t-size-12 btn-cancel fr" v-bind:class="{ 'display-btn' :item.OrderStatus <3 }" @click.stop="handleOrder(0,index,'CancelOrder',item.OrderNumber,item.WorkerLoginId,item.BuyPrice)" >取消订单</button>
+
+										</div>
+									</div>
+								</li>
+                <div class="t-center null" v-cloak   v-bind:class=" {'display-null' : items.order[0]== null ? true: false }" style="height:240px;font-size:center">
+									    <!-- <div class="t-center null" style="margin-top:2.8125rem"  style="height:500px"> -->
+										 <img  v-for="itemImg in nullimg" v-bind:src="itemImg" style="display: inline-block;height:2.8125rem;width:2.8125rem"/>
+										 <div class="t-size-12 c-gray t-center " style="margin-top: 0.3125rem;">{{nullText[index]}}</div>
+								    <!-- </div> -->
+								</div>
+
+                <div class="" style="height:2.1875rem">
+
+                </div>
+
+							</ul>
+
+						</div>
+					</div>
+				</div>
+			</section>
+			<script type="text/javascript" src="../script/lib/api.js"></script>
+			<script type="text/javascript" src="../script/js/commom.js"></script>
+			<script type="text/javascript" src="../script/lib/swiper.min.js"></script>
+			<script type="text/javascript" src="../script/lib/aui-pull-refresh.js"></script>
+			<script type="text/javascript" src="../script/js/myorder.js"></script>
+
+		</div>
+
+	</body>
+
+</html>

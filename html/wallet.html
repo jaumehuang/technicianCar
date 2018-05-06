@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0,user-scalable=no">
+		<meta content="yes" name="apple-mobile-web-app-capable" />
+		<meta content="black" name="apple-mobile-web-app-status-bar-style" />
+		<meta content="telephone=no" name="format-detection" />
+		<script type="text/javascript" src="../script/lib/flexible.js"></script>
+		<link rel="stylesheet" href="../css/iconfont.css" />
+		<link rel="stylesheet" href="../css/basic.css" />
+		<link rel="stylesheet" href="../css/style.css" />
+		<script type="text/javascript" src="../script/lib/vue.min.js"></script>
+		<title>钱包</title>
+	</head>
+	<body class="wallet">
+		 <header class="bottom-line">
+		 	 <i class="icon-font icon-zuo t-size-16 fl " onclick="api.closeWin()"></i>
+		 	 <span class="t-center t-size-16">钱包</span>
+		 </header>
+		<div class="container" id="wallet">
+			<div class="clearfix input_in bottom-line">
+				<span class="fl t-size-14 c-black">金额:<span class="t-size-14" ref="AdvancePayment">150</span></span>
+				<button class="btn-small fr  t-size-12 " v-bind:class="Ismoney ? 'btn-bg-o' : 'btn-bg-gary'" @click="openView('recharge')">充值</button>
+			</div>
+			<div class="clearfix input_in bottom-line" v-on:click="openView('withdrawals')">
+				<span class="fl t-size-14 c-black">提现</span>
+				<i class="icon-font icon-gengduo t-size-16 fr"></i>
+			</div>
+			<div class="clearfix input_in bottom-line" v-on:click="openView('pay_password')">
+				<span class="fl t-size-14 c-black">支付密码</span>
+				<i class="icon-font icon-gengduo t-size-16 fr"></i>
+			</div>
+			<div class=" input_in ">
+				<div class="t-size-14 c-black">交易记录</div>
+				<div class="null-record t-center t-size-12 " v-show="nullrecord">交易记录为空</div>
+				  <ul class="record-list">
+				  	 <li class="reord-li bottom-line" v-for="item in record" v-on:click="openView('record_detail',item.Guid)">
+				  	 	 <div class="mian-p clearfix c-black t-size-14" >
+				  	 	 	 <span class="fl" v-text="item.Memo"></span>
+
+				  	 	 </div>
+				  	 	  <div class="mian-p clearfix c-black t-size-14" >
+				  	 	 	 <span class="fl t-size-12 c-gray" v-text="item.CreateTime"></span>
+				  	 	 	 <span class="fr c-gray" v-text="item.OperateMoney"></span>
+				  	 	 </div>
+				  	 </li>
+				  </ul>
+			</div>
+
+		</div>
+		<script type="text/javascript" src="../script/lib/api.js"></script>
+		<script type="text/javascript" src="../script/js/commom.js"></script>
+		<script type="text/javascript" src="../script/js/wallet.js"></script>
+	</body>
+</html>

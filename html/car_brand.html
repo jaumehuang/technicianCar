@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0,user-scalable=no">
+		<meta content="yes" name="apple-mobile-web-app-capable" />
+		<meta content="black" name="apple-mobile-web-app-status-bar-style" />
+		<meta content="telephone=no" name="format-detection" />
+		<script type="text/javascript" src="../script/lib/flexible.js"></script>
+		<link rel="stylesheet" href="../css/iconfont.css" />
+		<link rel="stylesheet" href="../css/basic.css" />
+		<link rel="stylesheet" href="../css/style.css" />
+		<script type="text/javascript" src="../script/lib/vue.min.js"></script>
+		<title>品牌</title>
+		<style type="text/css">
+			.hot_list .list_li img {
+				height: 0.625rem;
+				width: 0.625rem;
+				border-radius: 50%;
+			}
+			.hot_list .list_li .num_name{
+				padding-left:0.3125rem;
+			}
+		</style>
+	</head>
+
+	<body class="ask">
+		<header class="bottom-line" id="header">
+			<i class="icon-font icon-zuo t-size-16 fl " onclick="api.closeWin()"></i>
+			<span class="t-center t-size-16">选择品牌</span>
+		</header>
+		<div class="container car_address " id="brand_list">
+
+			<div id="letter"></div>
+			<div class="clearfix main">
+				<div class="hot_list sort_box fl  " id="hot_list">
+
+					<div class="list_li clearfix sort_list bottom-line " v-for="(item,index) in list1 " @click="brandList2(index,item.Guid,item.Name)" v-bind:class="{'active-sort-list':changeIndex===index}">
+						<img v-bind:src="item.Logo" class="fl" />
+						<div class="fl num_name t-size-14">{{item.Name}}</div>
+					</div>
+
+				</div>
+				<ul class="fr two_list " id="two_list">
+             <li class="two_li" v-for="item in list2" @click="changeBrand(item.Guid,item.Name)">{{item.Name}}</li>
+				</ul>
+			</div>
+
+			<div class="initials">
+				<ul>
+					<!--<li></li> -->
+				</ul>
+			</div>
+
+			<script type="text/javascript" src="../script/lib/api.js"></script>
+			<script type="text/javascript" src="../script/js/commom.js"></script>
+			<script type="text/javascript" src="../script/lib/jquery-3.2.1.min.js"></script>
+			<script type="text/javascript" src="../script/lib/jquery.charfirst.pinyin.js"></script>
+			<script type="text/javascript" src="../script/lib/sort.js"></script>
+			<script type="text/javascript" src="../script/js/car_brand.js"></script>
+
+		</div>
+	</body>
+
+</html>

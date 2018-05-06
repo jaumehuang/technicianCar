@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0,user-scalable=no">
+	<meta content="yes" name="apple-mobile-web-app-capable" />
+	<meta content="black" name="apple-mobile-web-app-status-bar-style" />
+	<meta content="telephone=no" name="format-detection" />
+	<script type="text/javascript" src="../script/lib/flexible.js"></script>
+	<link rel="stylesheet" href="../css/iconfont.css" />
+	<link rel="stylesheet" href="../css/basic.css" />
+	<link rel="stylesheet" href="../css/style.css" />
+	<script type="text/javascript" src="../script/lib/vue.min.js"></script>
+	<title>定位</title>
+</head>
+
+<body style="background: #fff;">
+	<!--地址列表-->
+	<div class="near-address " id="location">
+		<header class="">
+			<i class="icon-font icon-zuo t-size-16 fl " onclick="api.closeWin()"></i>
+			<div class="fl search_t">
+				 <input type="search" placeholder="请输入搜索的地址" class="search t-size-12" ref="Words" @keypress="searchInBounds()" id="word"/>
+
+			</div>
+		</header>
+		<ul class="address-list" style="margin-top:10rem ;">
+
+			<li class="address-li bottom-line t-size-12" v-for="item in addressList" @click="changeAddress(item.name+'('+item.address+')')">
+
+				<div class="c-black">{{item.name}}</div>
+				<div class="c-gray">{{item.address}}</div>
+			</li>
+		</ul>
+	</div>
+	<script type="text/javascript" src="../script/lib/api.js"></script>
+	<script type="text/javascript" src="../script/js/commom.js"></script>
+	<script type="text/javascript" src="../script/js/location.js"></script>
+</body>
+
+</html>

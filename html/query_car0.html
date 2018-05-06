@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0,user-scalable=no">
+		<meta content="yes" name="apple-mobile-web-app-capable" />
+		<meta content="black" name="apple-mobile-web-app-status-bar-style" />
+		<meta content="telephone=no" name="format-detection" />
+		<script type="text/javascript" src="../script/lib/flexible.js"></script>
+		<link rel="stylesheet" href="../css/iconfont.css" />
+		<link rel="stylesheet" href="../css/basic.css" />
+		<link rel="stylesheet" href="../css/style.css" />
+		<script type="text/javascript" src="../script/lib/vue.min.js"></script>
+		<link rel="stylesheet" href="../css/swiper.min.css" />
+		<title>我的收藏</title>
+		<style media="screen">
+			[v-cloak] {
+				display: none !important;
+			}
+
+			.null-follow {
+				display: none;
+			}
+
+			.null-follow-block {
+				display: block;
+			}
+		</style>
+	</head>
+
+	<body class="comment my-follow  query-car">
+
+		<div class="" id="collection">
+			<header class="bottom-line">
+				<i class="icon-font icon-zuo t-size-16 fl " onclick="api.closeWin()"></i>
+				<span class="t-center t-size-16" ref="carName">维保价格</span>
+			</header>
+
+			<div class=" container" style="padding:0">
+
+				<nav class="list clearfix bottom-line swiper-container nav-move" style="height:1.1875rem">
+					<div class="swiper-wrapper">
+
+						<a href="#" class="li t-size-16 fl t-center c-black  swiper-slide ellipse " v-for="(item,index) in list1"  @click="SwitchIndex(index,item.Id)"  v-bind:class="{'active':changeIndex===index}" ref="btn1" >{{item.Name}}</a>
+					</div>
+				</nav>
+				<div class="car_more swiper-container main-move" style="padding-top:1.1rem">
+					<div class=" swiper-wrapper">
+						<ul class="car_list swiper-slide">
+							<li class="clearfix car_li bottom-line c-black t-size-12 " v-for="(item,index) in list2">
+								<div class="fl">{{item.Name}}</div>
+								<div class="fr c-gray">¥{{item.Price}}</div>
+							</li>
+						</ul>
+
+					</div>
+				</div>
+
+			</div>
+		</div>
+
+		<script src="../script/lib/swiper.min.js"></script>
+		<script type="text/javascript" src="../script/lib/api.js"></script>
+		<script type="text/javascript" src="../script/js/commom.js"></script>
+		<script type="text/javascript" src="../script/js/query_car0.js"></script>
+		<script>
+var mySwiper = new Swiper('.main-move', {
+                  //				autoplay: 5000, //可选选项，自动滑动
+
+                })
+		</script>
+	</body>
+
+</html>

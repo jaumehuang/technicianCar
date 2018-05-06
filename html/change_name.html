@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+	<head>
+	 <meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0,user-scalable=no">
+		<meta content="yes" name="apple-mobile-web-app-capable" />
+		<meta content="black" name="apple-mobile-web-app-status-bar-style" />
+		<meta content="telephone=no" name="format-detection" />
+		<script type="text/javascript" src="../script/lib/flexible.js"></script>
+		<link rel="stylesheet" href="../css/iconfont.css" />
+		<link rel="stylesheet" href="../css/basic.css" />
+		<link rel="stylesheet" href="../css/style.css" />
+			<script type="text/javascript" src="../script/lib/vue.min.js"></script>
+		<title>昵称</title>
+	</head>
+	<body class="change-name">
+		<header class="bottom-line">
+			<i class="icon-font icon-zuo t-size-16 fl "></i>
+			<span class="t-center t-size-16">昵称</span>
+		</header>
+		<div class="container" id="change_name">
+			<input type="text" placeholder="输入新的昵称" class="t-size-16" id="name"/>
+			<div class="t-size-14 c-black warm">4-10个字符，可由中英文、数字组成</div>
+			<button class="btn-bg-o btn-large t-size-16" type="button" @click="GetData()">保存</button>
+		</div>
+		<script type="text/javascript" src="../script/lib/api.js"></script>
+		<script type="text/javascript" src="../script/js/commom.js"></script>
+		<script type="text/javascript" src="../script/js/change_name.js"></script>
+	</body>
+</html>

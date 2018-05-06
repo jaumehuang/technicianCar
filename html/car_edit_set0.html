@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		 <meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0,user-scalable=no">
+		<meta content="yes" name="apple-mobile-web-app-capable" />
+		<meta content="black" name="apple-mobile-web-app-status-bar-style" />
+		<meta content="telephone=no" name="format-detection" />
+		<script type="text/javascript" src="../script/lib/flexible.js"></script>
+		<link rel="stylesheet" href="../css/iconfont.css" />
+		<link rel="stylesheet" href="../css/basic.css" />
+		<link rel="stylesheet" href="../css/style.css" />
+		<script type="text/javascript" src="../script/lib/vue.min.js"></script>
+		<title>车辆电子档案</title>
+	</head>
+	<body class="perosn-set">
+		<header class="bottom-line">
+			<i class="icon-font icon-zuo t-size-16 fl " onclick="api.closeWin()"></i>
+			<span class="t-center t-size-16">车辆电子档案</span>
+		</header>
+		<div class="container" id="car_edit_set0">
+			<div class="input-in clearfix bottom-line t-size-14">
+				<span class="fl">车牌</span>
+				<div class="fr c-gray">
+					<span class="">12</span>
+
+				</div>
+			</div>
+			<div class="input-in clearfix bottom-line bottom-line t-size-14">
+				<span class="fl">所有人</span>
+				<div class="fr c-gray">
+					<span class="">12</span>
+
+				</div>
+			</div>
+			<div class="input-in clearfix bottom-line bottom-line t-size-14">
+				<span class="fl">车牌型号</span>
+				<div class="fr c-gray">
+					<span class="">12</span>
+
+				</div>
+			</div>
+			<div class="input-in clearfix bottom-line bottom-line t-size-14">
+				<span class="fl">车架号VIN</span>
+				<div class="fr c-gray">
+					<span class="">12</span>
+
+				</div>
+			</div>
+			<div class="input-in clearfix bottom-line bottom-line t-size-14">
+				<span class="fl">发动机号</span>
+				<div class="fr c-gray">
+					<span class="">12</span>
+
+				</div>
+			</div>
+			<div class="input-in clearfix bottom-line bottom-line t-size-14">
+				<span class="fl">注册登记日</span>
+				<div class="fr c-gray">
+					<span class="">12</span>
+
+				</div>
+			</div>
+			<div class="input-in clearfix bottom-line bottom-line t-size-14 ">
+				<span class="fl">保险起止日</span>
+				<div class="fr c-gray">
+					<span class="">点击选择时间</span>
+					-
+					<span>点击选择时间</span>
+				</div>
+			</div>
+			<footer style="padding:0;" v-on:click="openView('car_edit_set1')">
+				<button class="btn-very-large btn-bg-o c-white t-size-16" style="margin-top:0;">编辑车辆基本信息</button>
+			</footer>
+		</div>
+
+		<script type="text/javascript" src="../script/lib/api.js"></script>
+  	<script type="text/javascript" src="../script/js/commom.js"></script>
+  	<script type="text/javascript" src="../script/js/car_edit_set0.js"></script>
+	</body>
+</html>

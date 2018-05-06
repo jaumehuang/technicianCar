@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0,user-scalable=no">
+	<meta content="yes" name="apple-mobile-web-app-capable" />
+	<meta content="black" name="apple-mobile-web-app-status-bar-style" />
+	<meta content="telephone=no" name="format-detection" />
+	<script type="text/javascript" src="../script/lib/flexible.js"></script>
+	<link rel="stylesheet" href="../css/iconfont.css" />
+	<link rel="stylesheet" href="../css/basic.css" />
+	<link rel="stylesheet" href="../css/style.css" />
+	<script type="text/javascript" src="../script/lib/vue.min.js"></script>
+	<link rel="stylesheet" href="../css/swiper.min.css" />
+	<title>我的关注</title>
+	<style>
+		[v-cloak] {
+			display: none !important;
+		}
+
+	</style>
+</head>
+
+<body class="comment my-follow">
+	<header class="bottom-line">
+		<i class="icon-font icon-zuo t-size-16 fl " onclick="api.closeWin()"></i>
+		<span class="t-center t-size-16">我的关注</span>
+	</header>
+	<div class="container swiper-container" id="my-follow" >
+		<nav class="list clearfix" style="background: #eff0f4;">
+			<a href="#" class="li t-size-16 fl t-center c-black " ref="btn1" v-bind:class="{'active':changeIndex===0}">修车技师</a>
+			<a href="#" class="li t-size-16 fl t-center c-black" ref="btn2" v-bind:class="{'active':changeIndex===1}">咨询技师</a>
+		</nav>
+		<div class="main-content swiper-wrapper" ref="swiperwrapper">
+			<div id="" class="swiper-slide">
+				<ul class="pr-list  " v-cloak>
+					<li class="pr-li" v-for="item in list1" @click="OpenView('technician_home2',item.MemLoginId)">
+						<div class="clearfix">
+							<img v-bind:src="item.Photo" class="fl technician-img" />
+							<div class="fl content bottom-line">
+								<div class="fl t-size-12">
+									<div>
+										<span>{{item.RealName}}</span>
+										<img src="../image/king.png" class="sign" />
+										<span>{{item.RankName}}</span>
+										<img v-bind:src="companyArr[item.IsCompany]" class="sign" />
+									</div>
+									<div>
+										擅长:{{item.GoodBrandName}} | 接单{{item.OrderCount}}
+									</div>
+									<div>
+										<i class="icon-font icon-dingwei c-gray t-size-16"></i>
+										<span class="t-size-14">12424</span>
+									</div>
+								</div>
+								<div class="fr">
+									<div class="t-size-14">评分:&nbsp;<span class="c-red">{{item.AverageGrade}}</span></div>
+									<button class="btn-small c-orange btn-bg-white t-size-14" @click.stop="DeleteCollction(item.CollectGuid)">取消关注</button>
+								</div>
+							</div>
+						</div>
+					</li>
+
+
+				</ul>
+				<div class="null-follow t-center t-size-16 c-gray  " v-show="list1.length==0 ? true : false">
+					<img src="../image/null_follow.png" />
+					<div>暂时没有收藏任何信息</div>
+				</div>
+			</div>
+
+			<div id="" class="swiper-slide">
+				<ul class="pr-list  " v-cloak>
+					<li class="pr-li" v-for="item in list2" @click="OpenView('technician_home',item.MemLoginId)">
+						<div class="clearfix">
+							<img v-bind:src="item.Photo" class="fl technician-img" />
+							<div class="fl content bottom-line">
+								<div class="fl t-size-12">
+									<div>
+										<span>{{item.RealName}}</span>
+										<img src="../image/king.png" class="sign" />
+										<span>{{item.RankName}}</span>
+										<img v-bind:src="companyArr[item.IsCompany]" class="sign" />
+									</div>
+									<div>擅长:{{item.GoodBrandName}} | 接单{{item.OrderCount}}</div>
+
+								</div>
+								<div class="fr">
+
+									<button class="btn-small c-orange btn-bg-white t-size-14" @click.stop="DeleteCollction(item.CollectGuid)">取消关注</button>
+								</div>
+							</div>
+						</div>
+					</li>
+				</ul>
+				<div class="null-follow t-center t-size-16 c-gray " v-show="list2.length==0 ? true : false">
+					<img src="../image/null_follow.png" />
+					<div>暂时没有收藏任何信息</div>
+				</div>
+			</div>
+			<div style="height:60px"></div>
+		</div>
+
+	</div>
+	<script src="../script/lib/swiper.min.js"></script>
+	<script type="text/javascript" src="../script/lib/api.js"></script>
+	<script type="text/javascript" src="../script/js/commom.js"></script>
+	<script type="text/javascript" src="../script/js/my_follow.js"></script>
+
+</body>
+
+</html>

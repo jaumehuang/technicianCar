@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0,user-scalable=no">
+	<meta content="yes" name="apple-mobile-web-app-capable" />
+	<meta content="black" name="apple-mobile-web-app-status-bar-style" />
+	<meta content="telephone=no" name="format-detection" />
+	<script type="text/javascript" src="../script/lib/flexible.js"></script>
+	<link rel="stylesheet" href="../css/iconfont.css" />
+	<link rel="stylesheet" href="../css/aui.css" />
+	<link rel="stylesheet" href="../css/aui-pull-refresh.css" />
+	<link rel="stylesheet" href="../css/basic.css" />
+	<link rel="stylesheet" href="../css/style.css" />
+	<script type="text/javascript" src="../script/lib/vue.min.js"></script>
+	<title>专家</title>
+	<style media="screen">
+		[v-cloak] {
+			display: none !important;
+		}
+		.aui-refresh-load {
+				top:-10px;
+			}
+	</style>
+</head>
+
+<body class="search-result technicians  search-technicians ">
+	<div id="search_expert" v-cloak >
+	<header class="clearfix search">
+		<i class="icon-font icon-zuo fl t-size-16"></i>
+		<input type="search" placeholder="搜索技师回答" class="t-center fl t-size-12" />
+	</header>
+	<div class="container">
+		<div class="search-li">
+			<nav class="list clearfix ">
+				<a href="#" class="li t-size-16 fl t-center c-black" style="width: 50%;" v-on:click="randomSwitchBtn($event,0)" v-bind:class="{active:changeIndex===0}"><span  v-text="switchBool0 ? '评分最低' : '评分最高'">评分最高</span><i class="icon-font " v-bind:class="switchBool0 ? 'icon-sanjiaoxing-down':'icon-sanjiaoxing-up'"></i> </a>
+				<a href="#" class="li t-size-16 fl t-center c-black" style="width: 50%;" v-on:click="randomSwitchBtn($event,1)" v-bind:class="{active:changeIndex===1}">接单次数<i class="icon-font" v-bind:class="switchBool1 ? 'icon-sanjiaoxing-down':'icon-sanjiaoxing-up'"></i></a>
+			</nav>
+			<section class="aui-refresh-content">
+				<div class="aui-content">
+					<ul class="search-list" style="margin-top:1rem">
+						<li class="search-li0" v-for="item in list1" @click="openView('technician_home',item.Guid)">
+							<div class="clearfix">
+								<img v-bind:src="item.Photo" class="fl technician-img" />
+								<div class="fl content bottom-line">
+									<div class="fl t-size-12">
+										<div class="clearfix">
+											<span class="fl"v-text="item.RealName">张珊</span>
+											<img src="../image/king.png" class="sign fl" />
+											<span class="fl" v-text="item.Name"></span>
+											<img src="../image/qi.png" class="sign fl" />
+										</div>
+										<div class="t-size-14">21221</div>
+
+									</div>
+									<div class="fr">
+										<button class="btn-small c-orange btn-bg-white t-size-12" @click.stop="openView('ask',item.Guid)">咨询</button>
+									</div>
+								</div>
+							</div>
+						</li>
+					</ul>
+				</div>
+			</section>
+		</div>
+	</div>
+		<script type="text/javascript" src="../script/lib/api.js"></script>
+		<script type="text/javascript" src="../script/js/commom.js"></script>
+		<script type="text/javascript" src="../script/lib/aui-pull-refresh.js"></script>
+		<script type="text/javascript" src="../script/js/search_expert.js"></script>
+	</div>
+</body>
+
+</html>

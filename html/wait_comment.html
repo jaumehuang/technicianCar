@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0,user-scalable=no">
+	<meta content="yes" name="apple-mobile-web-app-capable" />
+	<meta content="black" name="apple-mobile-web-app-status-bar-style" />
+	<meta content="telephone=no" name="format-detection" />
+	<script type="text/javascript" src="../script/lib/flexible.js"></script>
+	<link rel="stylesheet" href="../css/iconfont.css" />
+	<link rel="stylesheet" href="../css/basic.css" />
+	<link rel="stylesheet" href="../css/style.css" />
+	<script type="text/javascript" src="../script/lib/vue.min.js"></script>
+	<title>详情</title>
+</head>
+
+<body class="ask order-detail">
+	<header class="bottom-line">
+		<i class="icon-font icon-zuo t-size-16 fl " onclick="api.closeWin()"></i>
+		<span class="t-center t-size-16">详情</span>
+	</header>
+	<div class="container " id="wait-comment">
+		<div>
+			<div class="title ellipse_four t-size-16">{{details.Content}}</div>
+			<div class="show-img clearfix">
+
+				<img v-bind:src="li" class="img-li" v-for="(li,index) in ((details.Images).indexOf('|') != -1  ? (details.Images).split('|') : [details.Images]) " @click.stop="PhotoBrowser((details.Images).indexOf('|') != -1  ? (details.Images).split('|') : [details.Images],index)" />
+			</div>
+		</div>
+		<ul class="order-title-list">
+			<li class="order-title-li clearfix t-size-14 c-gray">
+				<div class="fl">技师报价: </div>
+				<div class="fl">{{details.BuyPrice}}元</div>
+			</li>
+			<li class="order-title-li clearfix t-size-14 c-gray">
+				<div class="fl">服务类型:</div>
+				<div class="fl">{{details.ServiceType}}</div>
+			</li>
+			<li class="order-title-li clearfix t-size-14 c-gray">
+				<div class="fl">预定时间: </div>
+				<div class="fl">{{details.SubscribeTime}}</div>
+			</li>
+			<li class="order-title-li clearfix t-size-14 c-gray">
+				<div class="fl">服务地址: </div>
+				<div class="fl">{{details.ServiceAddress}}</div>
+			</li>
+
+		</ul>
+		<!--<div class="technician-info">
+			    <div class="title-name t-size-16">技师</div>
+			    <div class="clearfix main-info">
+			    	    <img src="../image/gril.jpeg"  class="fl photo"/>
+			    	    <div class="content fl t-size-14">
+			    	    	    <span class="fl">黄金时代</span>
+			    	    	    <img src="../image/king.png" />
+			    	    	    <span>黄金会员</span>
+			    	    	    <img src="../image/up.png" />
+			    	    </div>
+			    	    <div class="fr distance">
+			    	    	    <i class="icon-font icon-dingwei t-size-16 c-gray"></i>
+			    	    	    <span class="t-size-14 c-black">121</span>
+			    	    </div>
+			    </div>
+			</div>-->
+		<ul class="order-title-list">
+			<div class="my-title bottom-line t-size-16">订单信息</div>
+			<li class="order-title-li clearfix t-size-14">
+				<div class="fl">订单号</div>
+				<div class="fr">{{details.OrderNumber}}</div>
+			</li>
+			<li class="order-title-li clearfix t-size-14">
+				<div class="fl">订单状态</div>
+				<div class="fr">{{statusText1[details.OrderStatus]}}</div>
+			</li>
+			<li class="order-title-li clearfix t-size-14">
+				<div class="fl">联系人</div>
+				<div class="fr">{{details.Name}}</div>
+			</li>
+			<li class="order-title-li clearfix t-size-14">
+				<div class="fl">车牌号码</div>
+				<div class="fr">{{details.CarNumber}}</div>
+			</li>
+			<li class="order-title-li clearfix t-size-14">
+				<div class="fl">手机号</div>
+				<div class="fr">{{details.Mobile}}</div>
+			</li>
+		</ul>
+		<div class="null" style="height:1.875rem"></div>
+		<footer class="" v-show="details.OrderStatus==0 ? true :false" >
+			<button class="btn-very-large c-black btn-bg-white t-size-16" @click="handleOrder(0,'CancelOrder',details.OrderNumber,details.WorkerLoginId,details.BuyPrice)" >取消订单</button>
+		</footer>
+
+		<footer class="clearfix comment-foot" v-show="details.OrderStatus==2  ? true :false" >
+			<button class="fl btn-bg-white c-orange t-size-16" @click="handleOrder(0,'CancelOrder',details.OrderNumber,details.WorkerLoginId,details.BuyPrice)">取消订单</button>
+			<button class="fl btn-bg-o c-white t-size-16" @click="openView('pay', item.OrderNumber)">立即支付</button>
+		</footer>
+		<footer class="" v-show="details.OrderStatus==3  ? true :false">
+			<button class="btn-very-large c-white btn-bg-o t-size-16" @click="handleOrder(1,'OverOrder',details.OrderNumber,details.WorkerLoginId,details.BuyPrice)">订单完成</button>
+		</footer>
+
+		<footer class="clearfix comment-foot" v-show="details.OrderStatus==4  ? true :false">
+			<button class="fl btn-bg-white c-orange t-size-16" @click="openView('car_repair')">再来一单</button>
+			<button class="fl btn-bg-o c-white t-size-16" @click="openView('comment2',details.WorkerLoginId+'|'+details.OrderNumber)">评价</button>
+		</footer>
+		<footer class="" v-show="details.OrderStatus== 5 ? true :false">
+			<button class="btn-very-large c-white btn-bg-o t-size-16" @click="openView('car_repair')">再来一单</button>
+		</footer>
+		<!--<footer class="clearfix comment-foot" v-show="details.OrderStatus==1 ? true :false">
+			<button class="fl btn-bg-white c-orange t-size-16" @click="handleOrder(0,'CancelOrder',details.OrderNumber,details.WorkerLoginId,details.BuyPrice)">取消订单</button>
+			<button class="fl btn-bg-o c-white t-size-16">选择技师</button>
+		</footer>-->
+	</div>
+	<script type="text/javascript" src="../script/lib/api.js"></script>
+	<script type="text/javascript" src="../script/js/commom.js"></script>
+	<script type="text/javascript" src="../script/js/wait_comment.js"></script>
+</body>
+
+</html>

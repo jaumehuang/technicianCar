@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0,user-scalable=no">
+	<meta content="yes" name="apple-mobile-web-app-capable" />
+	<meta content="black" name="apple-mobile-web-app-status-bar-style" />
+	<meta content="telephone=no" name="format-detection" />
+	<script type="text/javascript" src="../script/lib/flexible.js"></script>
+	<link rel="stylesheet" href="../css/iconfont.css" />
+	<link rel="stylesheet" href="../css/aui.css" />
+	<link rel="stylesheet" href="../css/aui-pull-refresh.css" />
+	<link rel="stylesheet" href="../css/basic.css" />
+	<link rel="stylesheet" href="../css/style.css" />
+	<script type="text/javascript" src="../script/lib/vue.min.js"></script>
+	<title>技师</title>
+	<style type="text/css">
+		.aui-refresh-load {
+			top: -10px;
+		}
+
+		[v-cloak] {
+			display: none !important;
+		}
+	</style>
+</head>
+
+<body class="search-result technicians">
+
+	<div id="technicians" v-cloak>
+		<header class="clearfix search">
+			<input type="search" placeholder="搜索技师" class="t-center fl t-size-12" style="width:100%" ref="Words" @click="openView('search')" />
+		</header>
+		<div class="container">
+			<div class="search-li">
+				<nav class="list clearfix bottom-line">
+					<a href="#" class="li t-size-16 fl t-center c-black " v-on:click="randomSwitchBtn($event,0)" v-bind:class="{active:changeIndex===0}"><span ref="technician">修理技师</span><i class="icon-font " v-bind:class="changeIndex===0 ? 'icon-sanjiaoxing-down':'icon-sanjiaoxing-up'"></i></a>
+					<a href="#" class="li t-size-16 fl t-center c-black" v-on:click="randomSwitchBtn($event,1)" v-bind:class="{active:changeIndex===1}"><span ref="brand">品牌</span><i class="icon-font " v-bind:class="changeIndex===1 ? 'icon-sanjiaoxing-down':'icon-sanjiaoxing-up'"></i> </a>
+					<a href="#" class="li t-size-16 fl t-center c-black" v-on:click="randomSwitchBtn($event,2)" v-bind:class="{active:changeIndex===2}"><span ref="type">类型</span><i class="icon-font " v-bind:class="changeIndex===2 ? 'icon-sanjiaoxing-down':'icon-sanjiaoxing-up'"></i></a>
+				</nav>
+
+				<div class="pr-list" v-show="iStheme">
+
+					<ul class="theme-list clearfix" v-if="changeIndex===0">
+						<li class="theme-li t-size-12 c-black  fl" v-on:click="themeSwitchBtn(0,$event,'one')" v-bind:class="{active:themeIndex0===0}" style="padding-left:0.25rem;padding-right:0.25rem">
+							修理技师
+						</li>
+						<li class="theme-li t-size-12 c-black  fl" v-on:click="themeSwitchBtn(1,$event,'one')" v-bind:class="{active:themeIndex0===1}" style="padding-left:0.25rem;padding-right:0.25rem">
+							咨询专家
+						</li>
+					</ul>
+					<ul class="theme-list clearfix" v-else-if="changeIndex===2">
+						<li class="theme-li t-size-12 c-black fl" v-on:click="themeSwitchBtn(0,$event,'three')" v-bind:class="{active:themeIndex1===0}" style="padding-left:0.25rem;padding-right:0.25rem">
+							企业
+						</li>
+						<li class="theme-li t-size-12 c-black fl" v-on:click="themeSwitchBtn(1,$event,'three')" v-bind:class="{active:themeIndex1===1}" style="padding-left:0.25rem;padding-right:0.25rem">
+							个人
+						</li>
+					</ul>
+
+				</div>
+
+				<div class="mask " v-bind:class="{'mask-block':isMask}" @click="CloseMask()"></div>
+				<section class="aui-refresh-content">
+					<div class="aui-content">
+						<ul class="search-list" style="margin-top:1rem" v-if="SwitchView">
+							<li class="search-li0 bottom-line" v-for="item in list1" @click="openView('technician_home2',item.MemLoginId)">
+								<div class="clearfix">
+									<img v-bind:src="item.Photo" class="fl" />
+									<div class="fl content">
+										<div class="fl t-size-12">
+											<div class="clearfix">
+												<span class="fl" v-text="item.RealName"></span>
+												<img src="../image/king.png" class="sign fl" />
+												<span class="fl" v-text="item.Name"></span>
+												<img v-bind:src="companyArr[item.IsCompany]" class="sign fl" />
+											</div>
+											<div>
+												<span>擅长:{{item.GoodBrandName}} | 接单{{item.OrderCount}}</span>
+											</div>
+											<div v-show="item.Range =='' ? false :true ">
+												<i class="icon-font icon-dingwei c-gray t-size-16"></i>
+												<span class="t-size-14" v-text="item.Range+'千米'"></span>
+											</div>
+										</div>
+										<div class="fr">
+											<div class="t-size-14">评分:&nbsp;<span class="c-red" v-text="item.AverageGrade"></span></div>
+											<button class="btn-small c-orange btn-bg-white t-size-14" @click.stop="OpenView('car_repair',item.MemLoginId)">预约</button>
+										</div>
+									</div>
+								</div>
+							</li>
+						</ul>
+						<ul class="search-list" style="margin-top:1rem" v-else>
+							<li class="search-li0 bottom-line" v-for="item in list2" @click="openView('technician_home',item.MemLoginId)">
+								<div class="clearfix" style="padding-bottom:0.3125rem;">
+									<img v-bind:src="item.Photo" class="fl" />
+									<div class="fl content">
+										<div class="fl t-size-12">
+											<div class="clearfix">
+												<span class="fl" v-text="item.RealName"></span>
+												<img src="../image/king.png" class="sign fl" />
+												<span class="fl" v-text="item.Name"></span>
+												<img v-bind:src="companyArr[item.IsCompany]" class="sign fl" />
+											</div>
+											<div class="clearfix">
+												<div class="t-size-14 fl">评分:&nbsp;<span class="c-red" v-text="item.AverageGrade"></span></div>
+												<div class="t-size-14 fl">&nbsp;| 咨询:&nbsp;<span class="" v-text="item.OrderCount"></span>人</div>
+											</div>
+
+										</div>
+										<div class="fr">
+
+											<button class="btn-small c-orange btn-bg-white t-size-14" @click.stop="openView('ask',item.MemLoginId)">咨询</button>
+										</div>
+									</div>
+								</div>
+							</li>
+						</ul>
+					</div>
+				</section>
+			</div>
+		</div>
+	</div>
+
+	<script type="text/javascript" src="../script/lib/api.js"></script>
+	<script type="text/javascript" src="../script/js/commom.js"></script>
+	<script type="text/javascript" src="../script/lib/aui-pull-refresh.js"></script>
+	<script type="text/javascript" src="../script/js/technician.js"></script>
+
+</body>
+
+</html>

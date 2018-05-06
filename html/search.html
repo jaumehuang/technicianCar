@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0,user-scalable=no">
+	<meta content="yes" name="apple-mobile-web-app-capable" />
+	<meta content="black" name="apple-mobile-web-app-status-bar-style" />
+	<meta content="telephone=no" name="format-detection" />
+	<script type="text/javascript" src="../script/lib/flexible.js"></script>
+	<link rel="stylesheet" href="../css/iconfont.css" />
+	<link rel="stylesheet" href="../css/basic.css" />
+	<link rel="stylesheet" href="../css/style.css" />
+	<script type="text/javascript" src="../script/lib/vue.min.js"></script>
+	<title>搜索</title>
+</head>
+
+<body class="search-result search">
+	<div class="" id="search">
+		<header class="clearfix search">
+			<i class="icon-font icon-zuo fl t-size-16" onclick="api.closeWin()"></i>
+			<input type="search" placeholder="搜索技师" class="t-center fl t-size-12"  ref="Words" @keypress="getKeywords()"/>
+		</header>
+		<div class="container">
+			<div class="search-li">
+				<div class="clearfix title-meou ">
+					<span class="fl t-size-16">热门搜索</span>
+
+				</div>
+				<ul class="search-list clearfix " style="background: #eff0f4;">
+					<li class="fl t-size-12">
+						多少度
+					</li>
+					<li class="fl t-size-12">
+						多少度
+					</li>
+					<li class="fl t-size-12">
+						多少度
+					</li>
+				</ul>
+			</div>
+		</div>
+		<script type="text/javascript" src="../script/lib/api.js"></script>
+		<script type="text/javascript" src="../script/js/commom.js"></script>
+		<script type="text/javascript" src="../script/js/search.js"></script>
+	</div>
+
+</body>
+
+</html>

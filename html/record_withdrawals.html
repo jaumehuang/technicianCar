@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0,user-scalable=no">
+		<meta content="yes" name="apple-mobile-web-app-capable" />
+		<meta content="black" name="apple-mobile-web-app-status-bar-style" />
+		<meta content="telephone=no" name="format-detection" />
+		<script type="text/javascript" src="../script/lib/flexible.js"></script>
+		<link rel="stylesheet" href="../css/iconfont.css" />
+		<link rel="stylesheet" href="../css/basic.css" />
+		<link rel="stylesheet" href="../css/style.css" />
+		<script type="text/javascript" src="../script/lib/vue.min.js"></script>
+		<title>提现记录</title>
+	</head>
+	<body class="record">
+		 <header class="bottom-line">
+		 	 <i class="icon-font icon-zuo t-size-16 fl " onclick="api.closeWin()"></i>
+		 	 <span class="t-center t-size-16">提现记录</span>
+		 </header>
+		<div class="container" id="record2">
+		     <ul class="record-list" v-for="items  in recorDate">
+		     	<div class="clearfix t-size-16 title">
+		     		 <span class="fl t-size-12">{{items.date}}</span>
+		     		 <span class="fr t-size-12">提现{{items.input}}</span>
+		     	</div>
+		     	 <li class="clearfix bottom-line" v-for="item in recordList" @click="openView('record_detail',item.Guid)">
+             <div class="t-size-14">{{item.Memo}}</div>
+		     	 	 <div class="clearfix t-size-12">
+		     	 	 	 <div class="c-gray fl">{{item.CreateTime}}</div>
+							 <span class="fr  num">{{item.OperateMoney}}</span>
+		     	 	 </div>
+
+		     	 </li>
+
+		     </ul>
+		</div>
+		<script type="text/javascript" src="../script/lib/api.js"></script>
+		<script type="text/javascript" src="../script/js/commom.js"></script>
+		<script type="text/javascript" src="../script/js/record2.js"></script>
+
+	</body>
+</html>

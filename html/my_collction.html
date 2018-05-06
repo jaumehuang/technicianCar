@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0,user-scalable=no">
+	<meta content="yes" name="apple-mobile-web-app-capable" />
+	<meta content="black" name="apple-mobile-web-app-status-bar-style" />
+	<meta content="telephone=no" name="format-detection" />
+	<script type="text/javascript" src="../script/lib/flexible.js"></script>
+	<link rel="stylesheet" href="../css/iconfont.css" />
+	<link rel="stylesheet" href="../css/basic.css" />
+	<link rel="stylesheet" href="../css/style.css" />
+	<script type="text/javascript" src="../script/lib/vue.min.js"></script>
+	<link rel="stylesheet" href="../css/swiper.min.css" />
+	<title>我的收藏</title>
+	<style media="screen">
+	   [v-cloak] {
+	    	display: none !important;
+	    }
+			/*.null-follow{
+				display: none;
+			}
+				body .null-follow-block{
+
+					display:block;
+				}*/
+	</style>
+</head>
+
+<body class="comment my-follow collection">
+
+	<div class="" id="collection">
+		<header class="bottom-line">
+			<i class="icon-font icon-zuo t-size-16 fl " onclick="api.closeWin()"></i>
+			<span class="t-center t-size-16">我的收藏</span>
+			<span class="t-center t-size-16 fr"  v-on:click="edit()" v-text="editType ? '编辑':'取消'"></span>
+		</header>
+
+		<div class=" swiper-container container" >
+
+			<nav class="list clearfix bottom-line">
+				<a href="#" class="li t-size-16 fl t-center c-black "  v-bind:class="{'active':changeIndex===0}" ref="btn1">问答</a>
+				<a href="#" class="li t-size-16 fl t-center c-black"  v-bind:class="{'active':changeIndex===1}" ref="btn2">文章</a>
+			</nav>
+			<div class="swiper-wrapper" ref="swiperwrapper">
+
+				<div class="main-content swiper-slide" style="padding-top: 0.25rem">
+					<ul class="pr-list  "  v-cloak>
+						<li class="pr-li clearfix  " v-bind:class="{'edit-li':editLi}" >
+							<div class="fl checked ">
+								<input class="" type="checkbox" />
+								<i class="icon"></i>
+							</div>
+							<div class="fl bottom-line main-content">
+								<div class="clearfix">
+									<img  class="fl show-img"  />
+									<div class="fl content">
+										<div class="t-size-16"></div>
+										<div class="c-gray">dsds</div>
+									</div>
+								</div>
+								<div class="main-text ellipse_four t-size-16">
+
+								</div>
+							</div>
+
+						</li>
+
+					</ul>
+					<div class="null-follow t-center t-size-16 c-gray " v-show="list1.length==0 ? true : false">
+						<img src="../image/null_follow.png" />
+						<div>暂时没有收藏任何信息</div>
+						<button class="btn-middle t-size-14 btn-bg-o " style="width:3.125rem;">去首页看看</button>
+					</div>
+				</div>
+				<div class="main-content  swiper-slide" style="padding-top: 0.25rem">
+					<ul class="pr-list clearfix "  v-cloak>
+
+						<li class="pr-li   clearfix fl" v-bind:class="{'edit-li':editLi}" v-for="item in list2" >
+							<div class="fl checked ">
+								<input class="" type="checkbox" v-bind:value="item.CollectGuid" v-model="checkCollection" />
+								<i class="icon"></i>
+							</div>
+							<div class="fl bottom-line main-content" @click="openView('news_detail',item.Guid)">
+								<img  v-bind:src="item.Image" class="fl" />
+								<div class="fl content">
+									<div class="c-black t-size-14 ellipse_two">
+                       {{item.Title}}
+									</div>
+									<div class="t-size-14 c-gray"> {{item.ClickCount}}人阅读</div>
+								</div>
+							</div>
+						</li>
+					</ul>
+					<div class="null-follow t-center t-size-16 c-gray "  v-show="list2.length==0 ? true : false">
+						<img src="../image/null_follow.png" />
+						<div>暂时没有收藏文章</div>
+					</div>
+
+				</div>
+			</div>
+		</div>
+		<!-- 问答 -->
+		<footer class="clearfix" v-bind:class="{'display-block':footer}">
+			<div class="fl check" >
+				 <input type="checkbox" name="" id="" value=""  @click="allchange()" ref="all"/>
+				 <i class="icon fl"></i>
+				 <span class="t-size-14 fl">全选</span>
+			</div>
+			<div class="t-size-14 c-orange fr" @click="DeleteCollction()">删除(<span>{{checkCollection.length}}</span>)</div>
+		</footer>
+	</div>
+
+</div>
+	<script type="text/javascript" src="../script/lib/api.js"></script>
+	<script type="text/javascript" src="../script/js/commom.js"></script>
+	<script type="text/javascript" src="../script/lib/swiper.min.js"></script>
+	<script type="text/javascript" src="../script/js/my_collection.js"></script>
+
+</body>
+
+</html>

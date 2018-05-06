@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0,user-scalable=no">
+		<meta content="yes" name="apple-mobile-web-app-capable" />
+		<meta content="black" name="apple-mobile-web-app-status-bar-style" />
+		<meta content="telephone=no" name="format-detection" />
+		<script type="text/javascript" src="../script/lib/flexible.js"></script>
+		<link rel="stylesheet" href="../css/iconfont.css" />
+		<link rel="stylesheet" href="../css/basic.css" />
+		<link rel="stylesheet" href="../css/style.css" />
+		<link rel="stylesheet" href="../css/mobiscroll.custom-2.6.2.min.css" />
+		<title>车辆电子档案</title>
+		<style>
+			 .android-ics .dwv{
+			 	color: #fe6634;
+			 	border-bottom: 2px solid #e5e5e5;
+			 }
+			 .android-ics .dw .dwwol{
+			 	border-top: 2px solid #fe6634;
+                border-bottom: 2px solid #fe6634;
+			 }
+			 .android-ics.light .dwb{
+			 	color:#fe6634;
+			 }
+		</style>
+	</head>
+
+	<body class="perosn-set">
+		<header class="bottom-line">
+			<i class="icon-font icon-zuo t-size-16 fl "></i>
+			<span class="t-center t-size-16">车辆电子档案</span>
+		</header>
+		<div class="container">
+			<div class="input-in clearfix bottom-line t-size-14">
+				<span class="fl">车牌</span>
+				<div class="fr">
+					<input type="text" placeholder="ss"  class="t-right"/>
+
+				</div>
+			</div>
+			<div class="input-in clearfix bottom-line bottom-line t-size-14">
+				<span class="fl">所有人</span>
+				<div class="fr">
+					<input type="text" placeholder="ss"  class="t-right"/>
+
+				</div>
+			</div>
+			<div class="input-in clearfix bottom-line bottom-line t-size-14">
+				<span class="fl">车牌型号</span>
+				<div class="fr">
+					<span class="">12</span>
+					<i class="icon-font icon-gengduo t-size-16"></i>
+				</div>
+			</div>
+			<div class="input-in clearfix bottom-line bottom-line t-size-14">
+				<span class="fl">车架号VIN</span>
+				<div class="fr">
+					<input type="text" placeholder="ss"  class="t-right"/>
+
+				</div>
+			</div>
+			<div class="input-in clearfix bottom-line bottom-line t-size-14">
+				<span class="fl">发动机号</span>
+				<div class="fr">
+					<input type="text" placeholder="ss"  class="t-right"/>
+
+				</div>
+			</div>
+			<div class="input-in clearfix bottom-line bottom-line t-size-14">
+				<span class="fl">注册登记日</span>
+				<div class="fr">
+					<input type="text" placeholder="ss"  class="t-right" name="test_default" id="test_default3"/>
+
+				</div>
+			</div>
+			<div class="input-in clearfix bottom-line bottom-line t-size-14">
+				<span class="fl">保险起止日</span>
+				<div class="fr" style="width:68%">
+					<input class="datainp t-center t-size-12 " type="text" placeholder="点击选择时间" name="test_default" id="test_default1" style="width:40%;">
+                    <span class="">-</span>
+					<input class="datainp t-center t-size-12" type="text" placeholder="点击选择时间" name="test_default" id="test_default2" style="width:40%;">
+				</div>
+			</div>
+		</div>
+		<footer style="padding:0;z-index: 1000;">
+			<button class="btn-very-large btn-bg-o c-white t-size-16" style="margin-top:0;">保存</button>
+		</footer>
+		<script src="../script/lib/jquery-3.2.1.min.js"></script>
+		<script type="text/javascript" src="../script/lib/mobiscroll.custom-2.6.2.min.js"></script>
+		<script>
+			function TimeType(type){
+				var Year = new Date().getFullYear();
+				var Month = new Date().getMonth();
+				var Data = new Date().getDay();
+				var opt = {
+
+				}
+				opt.datetime = {
+					preset: 'date',
+					minDate: type=='default2' ?   new Date():new Date(Year - 10, Month, Data),
+					maxDate: type=='default2' ?   new Date(Year + 10, Month, Data):new Date() ,
+					stepMinute: 5
+				};
+				var demo = 'date';
+				$(".demos").hide();
+				if(!($("#demo_" + demo).length))
+					demo = type;
+
+				$("#demo_" + demo).show();
+				$('#test_' + demo).val('').scroller('destroy').scroller($.extend(opt['datetime'], {
+					theme: 'android-ics light',
+					mode: 'scroller',
+					display: 'modal',
+					lang: 'zh'
+				}));
+			};
+			new TimeType('default1');
+			new TimeType('default2');
+			new TimeType('default3');
+		</script>
+	</body>
+
+</html>

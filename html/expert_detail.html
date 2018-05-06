@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0,user-scalable=no">
+		<meta content="yes" name="apple-mobile-web-app-capable" />
+		<meta content="black" name="apple-mobile-web-app-status-bar-style" />
+		<meta content="telephone=no" name="format-detection" />
+		<script type="text/javascript" src="../script/lib/flexible.js"></script>
+		<link rel="stylesheet" href="../css/iconfont.css" />
+		<link rel="stylesheet" href="../css/basic.css" />
+		<link rel="stylesheet" href="../css/style.css" />
+		<title>详情</title>
+		<script type="text/javascript" src="../script/lib/vue.min.js"></script>
+		<style>
+		 .pr-list .pr-li:first-child{
+            color:#333;
+		 }
+		 </style>
+	</head>
+	<body class="comment-detail expert">
+	   <div class="" id="expert_detail">
+		<header class="bottom-line">
+			<i class="icon-font icon-zuo t-size-16 fl "onclick="api.closeWin()"></i>
+			<span class="t-center t-size-16">详情</span>
+			<div class="fr">
+				<i class="icon-font icon-shoucang t-size-18" @click="addCollection()"   v-bind:class="isCollection ? 'icon-collect-fill' : 'icon-shoucang'"></i>
+				<i class="icon-font icon-fenxiang t-size-18" @click="MyShare()"></i>
+			</div>
+		</header>
+		<div id="" class="container">
+			<div class="car-master" v-for="item in person">
+				<div class="clearfix car-master-photo">
+					 <img v-bind:src="item.OwnerPhoto" class="fl"/>
+					 <div class="info fl">
+					 	 <div class="t-size-16 c-black">{{item.OwnerName}}</div>
+					 	 <div class="t-size-16 c-gray">车型:{{item.BrandName}}</div>
+					 </div>
+					 <div class="fr c-red t-size-16">￥{{item.AlreadPayPrice}}</div>
+				</div>
+				<div class="comment-say t-size-12 c-black ellipse_four">{{item.Title}}</div>
+				<div class="clearfix show-img">
+					 <img v-bind:src="li" class="img-li" v-for="(li,index) in (item.Image.indexOf('|') != -1  ? item.Image.split('|') : [item.Image]) " @click.stop="PhotoBrowser( item.Image.indexOf('|') != -1  ? item.Image.split('|') : item.Image,index)"/>
+
+				</div>
+				<div class="consultation clearfix c-gray t-size-12">
+					 <span class="fl">{{item.CreateTime}}</span>
+				</div>
+			</div>
+			<div class="technician-title t-size-16 c-black">
+				 技师回答
+			</div>
+			<ul class="pr-list">
+				 <li class="pr-li" v-for="item in responseList">
+				 	 <div class="technician-info clearfix">
+				 	 	 <img v-bind:src="item.Photo" class="fl photo" />
+				 	 	 <div class="info fl">
+				 	 	 	  <div class="grade clearfix">
+				 	 	 	  	  <span class="t-size-16 fl">{{item.RealName}}</span>
+				 	 	 	  	  <img src="../image/king.png"  class="fl"/>
+				 	 	 	  	  <span class="t-size-14 c-yellow fl">{{item.Name}}</span>
+				 	 	 	  	  <img src="../image/up.png" class="fl"/>
+				 	 	 	  </div>
+				 	 	 	  <div class="t-size-12 c-gray">{{item.CreateTime}}</div>
+				 	 	 </div>
+				 	 	 <span class="fr t-size-14">获得￥<span class="c-red">{{item.Commission}}</span></span>
+				 	 </div>
+				 	 <div class="technician-say">
+				 	 	 <!-- <div class="problem t-size-16 c-black">{{problem}}</div> -->
+				 	 	 <ul class="pr-list">
+				 	 	 	 <li class="pr-li c-gray t-size-14" v-for="li in (JSON.parse(item.CommentContent).slice(0,3))">
+				 	 	 	 	 <div class="" v-text="myLoginId == li.MemLoginId ? '车主:'+li.Content : '技师:'+li.Content " ></div>
+				 	 	 	 	 <!-- <div class="">技术</div> -->
+				 	 	 	 </li>
+				 	 	 </ul>
+				 	 	 <div class="more-say t-size-14 c-orange">
+				 	 	 	  查看剩余<span></span>对话>>
+				 	 	 </div>
+				 	 	 <!-- <div class="clearfix t-size-14 comment">
+				 	 	 	  <span class="fl">评价:&nbsp;</span>
+				 	 	 	  <span class="fl">的士速递</span>
+				 	 	 </div> -->
+				 	 </div>
+				 </li>
+			</ul>
+		</div>
+		<div class="" style="height:1.875rem"></div>
+		<footer class="clearfix comment-foot">
+			 <button class="fl btn-bg-white c-orange t-size-16" @click="openView('export_consult')">马上提问</button>
+			 <button class="fl btn-bg-o c-white t-size-16" @click="openView('search_expert2')">找专家咨询</button>
+		</footer>
+		</div>
+		<script type="text/javascript" src="../script/lib/api.js"></script>
+	<script type="text/javascript" src="../script/js/commom.js"></script>
+	<script type="text/javascript" src="../script/js/expert_detail.js"></script>
+	</body>
+</html>

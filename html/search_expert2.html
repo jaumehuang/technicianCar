@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0,user-scalable=no">
+		<meta content="yes" name="apple-mobile-web-app-capable" />
+		<meta content="black" name="apple-mobile-web-app-status-bar-style" />
+		<meta content="telephone=no" name="format-detection" />
+		<script type="text/javascript" src="../script/lib/flexible.js"></script>
+		<link rel="stylesheet" href="../css/aui.css" />
+		<link rel="stylesheet" href="../css/aui-pull-refresh.css" />
+		<link rel="stylesheet" href="../css/iconfont.css" />
+		<link rel="stylesheet" href="../css/basic.css" />
+		<link rel="stylesheet" href="../css/style.css" />
+		<script type="text/javascript" src="../script/lib/vue.min.js"></script>
+		<title>专家问答</title>
+		<style>
+			.aui-refresh-load{
+				top:-1.25rem;
+			}
+		</style>
+	</head>
+
+	<body class="search-result technicians  search-technicians search-expert2">
+		<div id="search-expert2">
+		<header class="clearfix search bottom-line">
+			<i class="icon-font icon-zuo fl t-size-16" onclick="api.closeWin()"></i>
+			<input type="search" placeholder="搜索专家" class="t-center fl t-size-12"   ref="Words" @keypress="getKeywords()"/>
+		</header>
+		<div class="container" >
+			<section class="aui-refresh-content">
+				<div class="aui-content">
+					<div class="search-li">
+
+						<ul class="search-list" style="margin-top:0;">
+
+							<li class="search-li0" v-for="item in list1" @click="openView('technician_home',item.MemLoginId)">
+								<div class="clearfix">
+									<img  v-bind:src="item.Photo" class="fl technician-img" />
+									<div class="fl content bottom-line">
+										<div class="fl t-size-12">
+											<div class="clearfix">
+												<span class="fl">{{item.RealName}}</span>
+												<img src="../image/king.png" class="sign fl" />
+												<span class="fl">{{item.Name}}</span>
+												<img v-bind:src="companyArr[item.IsCompany]" class="sign fl" />
+											</div>
+											<div class="t-size-14">
+													<span class="c-red">评分:{{item.AverageGrade}}</span>
+													| <span>咨询{{item.OrderCount}}人</span>
+											</div>
+
+										</div>
+										<div class="fr">
+											<button class="btn-small c-orange btn-bg-white t-size-14" @click.stop="openView('ask',item.MemLoginId)">咨询</button>
+										</div>
+									</div>
+								</div>
+							</li>
+
+						</ul>
+					</div>
+				</div>
+			</section>
+		</div>
+		<script type="text/javascript" src="../script/lib/api.js"></script>
+		<script type="text/javascript" src="../script/js/commom.js"></script>
+		<script type="text/javascript" src="../script/lib/aui-pull-refresh.js"></script>
+		<script type="text/javascript" src="../script/js/search_expert2.js"></script>
+	</div>
+	</body>
+
+</html>
